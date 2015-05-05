@@ -16,10 +16,9 @@ public class SimpleSlickGame extends BasicGame
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		/* The init() method is only called ones
-		 * this is were we place all the stuff needed for the game
-		 * In our case where we create all the objects (player,map and so on).
-		*/ 
+		// The init() method is only called ones
+		// this is were we place all the stuff needed for the game
+		// In our case where we create all the objects (player,map and so on). 
 		
 	}
 
@@ -35,8 +34,9 @@ public class SimpleSlickGame extends BasicGame
 		g.drawString("Hello World!", 250, 200);
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) // This function starts up the game.
 	{
+		
 		try
 		{
 			AppGameContainer appgc;
