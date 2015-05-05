@@ -24,13 +24,15 @@ public class SimpleSlickGame extends BasicGame
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
-		
+		// The update function updates your game logic
+		// in this case player movement, score and so on.
 		
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
+		// The render function updates the displayed graphics.
 		g.drawString("Hello World!", 250, 200);
 	}
 
