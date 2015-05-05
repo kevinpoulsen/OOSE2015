@@ -15,10 +15,19 @@ public class SimpleSlickGame extends BasicGame
 	}
 
 	@Override
-	public void init(GameContainer gc) throws SlickException {}
+	public void init(GameContainer gc) throws SlickException {
+		/* The init() method is only called ones
+		 * this is were we place all the stuff needed for the game
+		 * In our case where we create all the objects (player,map and so on).
+		*/ 
+		
+	}
 
 	@Override
-	public void update(GameContainer gc, int i) throws SlickException {}
+	public void update(GameContainer gc, int i) throws SlickException {
+		
+		
+	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
