@@ -27,6 +27,9 @@ public class SimpleSlickGame extends BasicGame
 		// The update function updates your game logic
 		// in this case player movement, score and so on.
 		
+		// int i, i is delta, the integer is the number of miliseconds between each update.
+		// an example if you have 10 fps, i = 100
+		
 	}
 
 	@Override
