@@ -111,12 +111,12 @@ public class Player {
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
-	
+
 	public static boolean onCollision(Shape a){
 		collides = shape.intersects(a);
 		return collides; 
 	}
-	
+
 	public static float[] playerStates(GameContainer gc)
 	{
 		
@@ -146,4 +146,3 @@ public class Player {
 		return states;
 	}// static float playerStates()
 }// class Player
-
