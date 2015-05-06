@@ -8,10 +8,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Polygon;
 
-
-
 public class Player {
-	//player variables: 
+	//player variables
 	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
@@ -29,16 +27,13 @@ public class Player {
 	static float x3poly = 310;
 	static float y3poly = 30;
 	
-	static float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-	private static Shape shape = new Polygon(polyCoordinates);
-	
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
 		
-		Input input; 
-		input = gc.getInput(); // listens for keyboard input
+//		Input input; 
+//		input = gc.getInput(); // listens for keyboard input
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
 			fuel--;
@@ -95,14 +90,14 @@ public class Player {
 		
 		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
 		Shape shape = new Polygon(polyCoordinates);
+		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
+		
+		g.rotate(x2poly+x1poly/2,y2poly+y1poly/2, 45);
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
-		
 		g.setColor(new Color(255,255,255));
 		g.draw(shape);
-		
-		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
