@@ -31,33 +31,15 @@ public class Player {
 		float gravity = 0.0f;
 		gravity += (float) 0.5;
 		return gravity;
-		}
+	}
 		
-	
-	public static void playerPosition(int angleS, float xSpeed, float ySpeed, float gravity)
+	public static void playerThrust(GameContainer gc)
 	{	
 		
-	}
-	
-	
-	
-	public static void playerThrust(GameContainer gc)
-	{
-		
-		
-		/*if (key.space)
-			move player in direction player is facing
-			
-		*/
-		
-		// using keyboard input: 
-		/*Input input;
-		input = gc.getInput();
-			
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
-			Player.y1--;
-		}*/
+			
+		}
 	}
 	
 	public void playerRenderer(Graphics gc)
