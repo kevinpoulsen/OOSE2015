@@ -17,7 +17,6 @@ public class SimpleSlickGame extends BasicGame
 		super(gamename);
 	}
 
-	
 	public GameMaster test;	
 	long timer;
 	Map mapOne = new Map();
