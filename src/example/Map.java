@@ -45,6 +45,7 @@ public class Map{
 				640,rnd.nextInt(400)+100,// 30
 		};
 		
+		
 		return pointArr;
 	}// float[] mapGeneration.
 	

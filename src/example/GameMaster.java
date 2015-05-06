@@ -28,10 +28,6 @@ public class GameMaster {
 		return remainFuel;	
 	}
 	
-	
-	
-	
-	
 	// The gamemaster class needs a timer and score system. 
 	// The score will be depending on remaining time and remaining fuel.
 	// The GM therefore needs a timer object, fuel object, score object.
