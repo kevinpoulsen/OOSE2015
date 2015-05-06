@@ -21,6 +21,7 @@ public class Player {
 	float gravity; // gravity pulls player in the +y direction
 	int angleState; // determines the way the player is facing,
 					// this alters the way the thrust function will move the player
+	
 	static float x1 = 100;
 	static float y1 = 300;
 	static int width = 25;
