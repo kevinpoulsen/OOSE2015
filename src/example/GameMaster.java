@@ -13,7 +13,7 @@ public class GameMaster {
 	boolean collides = false;
 	
 	public static void onCollision(){
-		//collides = Player.
+		
 	}
 	
 	
@@ -27,10 +27,6 @@ public class GameMaster {
 		
 		return remainFuel;	
 	}
-	
-	
-	
-	
 	
 	// The gamemaster class needs a timer and score system. 
 	// The score will be depending on remaining time and remaining fuel.

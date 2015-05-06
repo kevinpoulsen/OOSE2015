@@ -15,7 +15,9 @@ public class Player {
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
+	
 	static String fuelLeft = " Fuel"; // used to display fuel left on the game screen
+	
 	static float angleState = 0;
 	static float rotateState = 0;
 	
@@ -26,6 +28,11 @@ public class Player {
 	static float y2poly = 30;
 	static float x3poly = 310;
 	static float y3poly = 30;
+	
+	static boolean collides = false;
+	static Shape shape;
+	static float[] polyCoordinates;
+	
 
 	public static void playerThrust(GameContainer gc, float angleState)
 	{
@@ -88,9 +95,9 @@ public class Player {
 	
 	public static void playerRenderer(Graphics g, float rotateState, GameContainer gc)
 	{
-		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+		polyCoordinates = new float[]{x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+		shape = new Polygon(polyCoordinates);
 
-		Shape shape = new Polygon(polyCoordinates);
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
 		//System.out.println("render rotate state " + rotateState);
@@ -105,11 +112,20 @@ public class Player {
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
 	
+
+	public static boolean onCollision(Shape a){
+		
+		collides = shape.intersects(a);
+		return collides; 
+	}
+	
+
 	public static float[] playerStates(GameContainer gc)
 	{
 		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
+
 		float[] states = new float[2];
 		
 		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
@@ -117,6 +133,7 @@ public class Player {
 			rotateState -= 45;
 			if(angleState == -1){
 				angleState = 7;
+				
 			}
 		}
 		if(input.isKeyPressed(Input.KEY_RIGHT)){
@@ -126,8 +143,10 @@ public class Player {
 				angleState = 0;
 			}
 		}
+
 		states[0] = angleState;
 		states[1] = rotateState;
 		return states;
 	}// static float playerStates()
 }// class Player
+
