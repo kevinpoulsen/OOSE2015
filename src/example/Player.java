@@ -84,13 +84,11 @@ public class Player {
 		System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
 	}
 	
-	public static void playerRenderer(Graphics g)
+	public static void playerRenderer(Graphics g, int angleState, GameContainer gc)
 	{
-		
 		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
 		Shape shape = new Polygon(polyCoordinates);
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
-		
 		
 		g.rotate(x2poly+x1poly/2,y2poly+y1poly/2, 45);
 		g.setColor(new Color(255,255,0));
@@ -98,11 +96,26 @@ public class Player {
 		g.setColor(new Color(255,255,255));
 		g.draw(shape);
 		
+		
+		Input input = gc.getInput();
+		
+		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
+			System.out.println("Yo mama");
+			g.rotate((x1poly + x2poly)/2,(y1poly + y2poly)/2, -45);
+		}
+		if(input.isKeyPressed(Input.KEY_RIGHT)){
+			System.out.println("Yo mama is so phat");
+			g.rotate((x1poly + x2poly)/2,(y1poly + y2poly)/2, 45);
+		}
+
+		
+		g.setColor(new Color(255,255,0));
+		g.fill(shape);
+		g.setColor(new Color(255,255,255));
+		g.draw(shape);
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
-	
-	
 	
 	public static int playerAngleState(GameContainer gc)
 	{
