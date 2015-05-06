@@ -13,10 +13,12 @@ import org.newdawn.slick.SlickException;
 public class Map{
 
 	public float[] mapGeneration (){
-		Random rnd = new Random();
 
+		Random rnd = new Random();
+		
+		// initializing the 30 koordinates that creates the map.
 		float[] pointArr = {
-				0,rnd.nextInt(400)+100,// 1
+				0,rnd.nextInt(400)+100,//(x,y) 1
 				22,rnd.nextInt(400)+100,// 2
 				44,rnd.nextInt(400)+100,// 3
 				66,rnd.nextInt(400)+100,// 4
