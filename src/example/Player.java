@@ -34,8 +34,8 @@ public class Player {
 	
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
-		float ds = 0.0001f; // diagonal speed
-		float ns = 0.0002f; // normal speed
+		float ds = 0.0005f; // diagonal speed
+		float ns = 0.001f; // normal speed
 		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
@@ -75,20 +75,27 @@ public class Player {
 	}// void playerThrust
 	
 	public static void playerPosition(){
-		gravity += 0.00001f;
+		
+		// this class needs modifications 
+		
+		gravity += 0.00001f;// there is a problem with the gravity implementation
 		x1poly += xSpeed;
 		x2poly += xSpeed;
 		x3poly += xSpeed;
 		y1poly += ySpeed + gravity;
 		y2poly += ySpeed + gravity;
 		y3poly += ySpeed + gravity;
+		
+		System.out.println(x1poly + " " + x2poly + " "+ x3poly);
+		System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
 	}
 	
 	public static void playerRenderer(Graphics g)
 	{
-		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
 		
-		//g.drawOval(xPosition, yPosition, 50, 50);
+		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+		Shape shape = new Polygon(polyCoordinates);
+		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
 		
@@ -96,9 +103,6 @@ public class Player {
 		g.draw(shape);
 		
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
-		// function must be updated all the time
-		// uses the angleState to draw the player,
-		
 		
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
