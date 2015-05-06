@@ -42,6 +42,7 @@ public class SimpleSlickGame extends BasicGame
 		//timer in seconds is updated here
 		
 		Player.playerRotate(gc);
+		
 		timer = test.timer();
 		
 	}
@@ -52,7 +53,7 @@ public class SimpleSlickGame extends BasicGame
 		// The render function updates the displayed graphics.
 		//Timer in seconds is drawn here
 		g.drawString(String.valueOf(timer), 100, 100);
-	
+		Player.playerRenderer(g);
 		
 		mapOne.mapRenderer(g, mapArr);
 		

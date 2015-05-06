@@ -11,7 +11,6 @@ import org.newdawn.slick.SlickException;
 
 public class Player {
 	//player variables: 
-	// hej jeg committer lige....
 	
 	int xPosition; // players x position on the screen
 	int yPosition; // players y position on the screen
@@ -50,11 +49,11 @@ public class Player {
 		
 	}
 	
-	public void playerDraw(Graphics gc)
+	public static void playerRenderer(Graphics g)
 	{
 		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
-		gc.drawRect(x1, y1, width, height);
 		
+		g.drawRect(x1, y1, width, height);
 		
 		// Main player:
 		// draw player (in shape of a triangle) using position x and y.
@@ -82,7 +81,7 @@ public class Player {
 			}
 			System.out.println(angleState);
 		}
-		if(input.isKeyPressed(input.KEY_RIGHT)){
+		if(input.isKeyPressed(Input.KEY_RIGHT)){
 			angleState++;
 			if(angleState == 8){
 				angleState = 0;
