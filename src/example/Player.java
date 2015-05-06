@@ -28,7 +28,6 @@ public class Player {
 	static int height = 25;
 	
 	
-	
 	public static void playerThrust(GameContainer gc)
 	{
 		/*if (key.space)
