@@ -57,11 +57,13 @@ public class SimpleSlickGame extends BasicGame
 		g.drawString("Time: ", 530, 40);
 		g.drawString(String.valueOf(timer), 600, 40);
 		mapOne.mapRenderer(g, mapArr);
-		Player.playerRenderer(g,Player.playerAngleState(gc), gc);
+		Player.playerRenderer(g,gc);
 		
 		
 	}
 
+	
+	
 	public static void main(String[] args) // This function starts up the game.
 	{		
 		try
