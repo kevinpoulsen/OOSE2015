@@ -17,6 +17,7 @@ public class Player {
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
 	
 	static String fuelLeft = " Fuel"; // used to display fuel left on the game screen
+	static boolean thrust = false; // boolean to tell if thrust is being used, this is used to render the exhaust
 	
 	static float angleState = 0;
 	static float rotateState = 0;
@@ -45,7 +46,7 @@ public class Player {
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
 			fuel--;
-			
+			thrust = true;
 		 	if(angleState == 0){
 				ySpeed -= ns; 
 			}
@@ -98,6 +99,8 @@ public class Player {
 		polyCoordinates = new float[]{x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
 		shape = new Polygon(polyCoordinates);
 
+		float exhaustCoordinates[] = new float[6];
+		
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
 		//System.out.println("render rotate state " + rotateState);
@@ -108,15 +111,36 @@ public class Player {
 		g.fill(shape);
 		g.setColor(new Color(255,255,255));
 		g.draw(shape);
+		
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
+		if(thrust){
+			
+			exhaustCoordinates = new float[]{x1poly+10,y1poly,x2poly,y2poly,x3poly,y3poly};
+			shape = new Polygon(exhaustCoordinates);
+			g.fill(shape);
+			g.setColor(new Color(255,255,255));
+			g.draw(shape);
+			thrust = false;
+		}
+		
 	}	
 	
-
+	
 	public static boolean onCollision(Shape a){
 		
 		collides = shape.intersects(a);
 		return collides; 
+	}
+	
+	// warns user is player is off screen. Must be used to create a loss condition
+	public static boolean playerOffScreen(GameContainer gc){
+		
+		if(x1poly > gc.getWidth() || x1poly < 0 || y1poly > gc.getHeight() || y1poly < 0){
+			System.out.println("Player is off screen");
+			return true;
+		}
+		return false;
 	}
 	
 

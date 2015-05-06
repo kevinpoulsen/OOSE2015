@@ -53,8 +53,8 @@ public class SimpleSlickGame extends BasicGame
 		//timer in seconds is updated here
 		timer = test.timer();
 		
+		Player.playerOffScreen(gc); // warns user if player is off screen
 		testBool = Player.onCollision(Map.shapeArray);
-		
 		
 	}
 
