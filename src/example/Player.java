@@ -19,7 +19,6 @@ public class Player {
 	float xSpeed;  // players speed in the x direction
 	float ySpeed;  // players speed in the y direction
 	int fuel;	   // fuel decreases as the players uses thrust
-	float gravity; // gravity pulls player in the +y direction
 	static int angleState; // determines the way the player is facing,
 					// this alters the way the thrust function will move the player
 	
@@ -27,6 +26,20 @@ public class Player {
 	static float y1 = 300;
 	static int width = 25;
 	static int height = 25;
+	
+	public float playerGravity(){
+		float gravity = 0.0f;
+		gravity += (float) 0.5;
+		return gravity;
+		}
+		
+	
+	public static void playerPosition(int angleS, float xSpeed, float ySpeed, float gravity)
+	{	
+		
+	}
+	
+	
 	
 	public static void playerThrust(GameContainer gc)
 	{
@@ -45,12 +58,9 @@ public class Player {
 		{
 			Player.y1--;
 		}*/
-		
-		
-		
 	}
 	
-	public void playerDraw(Graphics gc)
+	public void playerRenderer(Graphics gc)
 	{
 		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
 		gc.drawRect(x1, y1, width, height);
