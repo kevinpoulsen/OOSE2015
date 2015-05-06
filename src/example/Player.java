@@ -97,16 +97,15 @@ public class Player {
 	public static void playerRenderer(Graphics g, float rotateState, GameContainer gc)
 	{
 		polyCoordinates = new float[]{x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-		shape = new Polygon(polyCoordinates);
 
 		float exhaustCoordinates[] = new float[6];
 		
+		shape = new Polygon(polyCoordinates);
+
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
-		
-		//System.out.println("render rotate state " + rotateState);
+
 		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
 
-		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
 		g.setColor(new Color(255,255,255));
@@ -125,10 +124,8 @@ public class Player {
 		}
 		
 	}	
-	
-	
+
 	public static boolean onCollision(Shape a){
-		
 		collides = shape.intersects(a);
 		return collides; 
 	}
@@ -142,7 +139,6 @@ public class Player {
 		}
 		return false;
 	}
-	
 
 	public static float[] playerStates(GameContainer gc)
 	{
@@ -173,4 +169,3 @@ public class Player {
 		return states;
 	}// static float playerStates()
 }// class Player
-

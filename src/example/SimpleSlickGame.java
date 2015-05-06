@@ -25,6 +25,7 @@ public class SimpleSlickGame extends BasicGame
 	boolean testBool;
 
 	float[] mapArr;
+	
 	float[] currStates = new float[2];
 	
 	@Override
@@ -51,11 +52,12 @@ public class SimpleSlickGame extends BasicGame
 		currStates = Player.playerStates(gc);
 		Player.playerThrust(gc, currStates[0]);
 		//timer in seconds is updated here
-		timer = test.timer();
 		
+
 		Player.playerOffScreen(gc); // warns user if player is off screen
-		testBool = Player.onCollision(Map.shapeArray);
-		
+
+		timer = test.timer();
+		testBool = Player.onCollision(Map.mapShape);
 	}
 
 	@Override
@@ -96,4 +98,3 @@ public class SimpleSlickGame extends BasicGame
 		}
 	}
 }
-
