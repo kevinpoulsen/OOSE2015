@@ -16,7 +16,6 @@ public class SimpleSlickGame extends BasicGame
 		super(gamename);
 	}
 
-	
 	public GameMaster test;	
 	Map mapOne = new Map();
 	float[] mapArr;
