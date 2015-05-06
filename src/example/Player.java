@@ -30,7 +30,7 @@ public class Player {
 	static float y3poly = 30;
 	
 	static float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-	private static Shape shape = new Polygon(polyCoordinates);
+	static Shape shape = new Polygon(polyCoordinates);
 	
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
