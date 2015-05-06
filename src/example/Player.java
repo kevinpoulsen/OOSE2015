@@ -1,13 +1,14 @@
 package example;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.geom.Polygon;
+
+
 
 public class Player {
 	//player variables: 
@@ -17,12 +18,21 @@ public class Player {
 	int fuel;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
 	static int angleState; // determines the way the player is facing,
-					// this alters the way the thrust function will move the player
 	
 	static float xPosition = 100;
 	static float yPosition = 300;
-	static int width = 25;
-	static int height = 25;
+	
+	// Declare and initialize player positions
+	static float x1poly = 300;
+	static float y1poly = 0;
+	static float x2poly = 290;
+	static float y2poly = 30;
+	static float x3poly = 310;
+	static float y3poly = 30;
+	
+	static float[] polyKoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+	private static Shape shape = new Polygon(polyKoordinates);
+	
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
 		float ds = 0.0001f; // diagonal speed
@@ -74,7 +84,12 @@ public class Player {
 	{
 		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
 		
-		g.drawOval(xPosition, yPosition, 50, 50);
+		//g.drawOval(xPosition, yPosition, 50, 50);
+		g.setColor(new Color(255,255,0));
+		g.fill(shape);
+		
+		g.setColor(new Color(255,255,255));
+		g.draw(shape);
 		
 		// Main player:
 		// draw player (in shape of a triangle) using position x and y.
