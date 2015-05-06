@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 
 public class Player {
 	//player variables: 
+	// hej jeg committer lige....
 	
 	int xPosition; // players x position on the screen
 	int yPosition; // players y position on the screen
@@ -26,7 +27,6 @@ public class Player {
 	static float y1 = 300;
 	static int width = 25;
 	static int height = 25;
-	
 	
 	public static void playerThrust(GameContainer gc)
 	{
