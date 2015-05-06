@@ -21,11 +21,12 @@ public class SimpleSlickGame extends BasicGame
 	long timer;
 	public Map mapOne = new Map();
 	float[] mapArr;
-	float rotateState;
+	float[] currStates = new float[2];
+	
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		// The init() method is only called ones
+		// The init() method is only called once
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = mapOne.mapGeneration();
@@ -41,10 +42,10 @@ public class SimpleSlickGame extends BasicGame
 
 		//timer in seconds is updated here
 	
-		rotateState = Player.playerRotate(gc);
-		System.out.println("rotate " + rotateState);
+		currStates = Player.playerStates(gc);
+		//System.out.println(rotateState);
 		Player.playerPosition();
-		Player.playerThrust(gc, Player.playerAngleState(gc));
+		Player.playerThrust(gc, currStates[0]);
 		timer = test.timer();
 		
 	}
@@ -55,12 +56,13 @@ public class SimpleSlickGame extends BasicGame
 		// The render function updates the displayed graphics.
 		//Timer in seconds is drawn here
 		g.drawString("Angle: ", 530, 70);
-		g.drawString(String.valueOf(Player.playerAngleState(gc)), 600, 70);
+		g.drawString(String.valueOf(currStates[0]), 600, 70);
+		
 		g.drawString("Time: ", 530, 40);
 		g.drawString(String.valueOf(timer), 600, 40);
 		mapOne.mapRenderer(g, mapArr);
 		
-		Player.playerRenderer(g,rotateState, gc);
+		Player.playerRenderer(g,currStates[1], gc);
 		
 		
 		
