@@ -32,8 +32,7 @@ public class Player {
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
 		
-//		Input input; 
-//		input = gc.getInput(); // listens for keyboard input
+		Input input = gc.getInput(); // listens for keyboard input
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
 			fuel--;
