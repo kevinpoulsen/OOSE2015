@@ -93,7 +93,7 @@ public class Player {
 		Shape shape = new Polygon(polyCoordinates);
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
-		System.out.println("render rotate state " + rotateState);
+		//System.out.println("render rotate state " + rotateState);
 		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
 
 		

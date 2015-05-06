@@ -55,6 +55,7 @@ public class SimpleSlickGame extends BasicGame
 	{
 		// The render function updates the displayed graphics.
 		//Timer in seconds is drawn here
+		
 		g.drawString("Angle: ", 530, 70);
 		g.drawString(String.valueOf(currStates[0]), 600, 70);
 		
