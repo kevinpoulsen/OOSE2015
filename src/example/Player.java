@@ -15,7 +15,9 @@ public class Player {
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
-	static int angleState; // determines the way the player is facing,
+	
+	static float angleState; // angleState, used in playerStates() 
+	static float rotateState; // rotateState, used in playerStates()
 	
 	static String fuelLeft = " Fuel"; // used to display fuel left on the game screen
 	
@@ -27,7 +29,7 @@ public class Player {
 	static float x3poly = 310;
 	static float y3poly = 30;
 
-	public static void playerThrust(GameContainer gc, int angleState)
+	public static void playerThrust(GameContainer gc, float angleState)
 	{
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
@@ -105,43 +107,34 @@ public class Player {
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
 	
-	public static int playerAngleState(GameContainer gc)
+	public static float[] playerStates(GameContainer gc)
 	{
 		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
+
+		float[] currArr = new float[2];
 		
 		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
 			angleState--;
+			rotateState -= 45;
 			if(angleState == -1){
 				angleState = 7;
+				
 			}
 		}
 		if(input.isKeyPressed(Input.KEY_RIGHT)){
 			angleState++;
+			rotateState += 45;
 			if(angleState == 8){
 				angleState = 0;
 			}
 		}
-		return angleState;
+		currArr[0] = angleState;
+		currArr[1] = rotateState;
+		
+		return currArr;
 
 		
 	}
-	
-	public static float playerRotate(GameContainer gc){
-	
-		Input input;
-		input = gc.getInput();
-		float rotate = 0;
-		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
-			System.out.println("Yo mama");
-			rotate = -45;
-		}
-		if(input.isKeyPressed(Input.KEY_RIGHT)){
-			System.out.println("Yo mama is so phat");
-			rotate = 45;
-		}
-		return rotate;
-	}
-
 }
