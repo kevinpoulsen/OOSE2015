@@ -3,34 +3,22 @@ package example;
 public class GameMaster {
 	
 	
+	
 	public long startTime = System.currentTimeMillis();
 	long ellapsedTime;
 	long ellapsedSeconds;
 	String drawTimer;
-
-
-	private void update() {
-		
-		//Timer
-		ellapsedTime = System.currentTimeMillis() - startTime;
-		ellapsedSeconds = ellapsedTime/1000;
-	}
 	
-	private void draw(){
-		
-		//Timer
-		drawTimer = String.valueOf(ellapsedSeconds);
-	}
 	
 	public long timer(){
-		update();
+		ellapsedTime = System.currentTimeMillis() - startTime;
+		ellapsedSeconds = ellapsedTime/1000;
 		return ellapsedSeconds;
 	}
 	
-	public String dispTimer(){
-		draw();
-		return drawTimer;
-	}
+
+	
+	
 	
 	// The gamemaster class needs a timer and score system. 
 	// The score will be depending on remaining time and remaining fuel.

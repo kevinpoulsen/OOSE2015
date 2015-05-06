@@ -19,6 +19,7 @@ public class SimpleSlickGame extends BasicGame
 
 	
 	public GameMaster test;	
+	long timer;
 	Map mapOne = new Map();
 	float[] mapArr;
 	
@@ -39,8 +40,8 @@ public class SimpleSlickGame extends BasicGame
 		// an example if you have 10 fps, i = 100
 
 		//timer in seconds is updated here
-		test.timer();
-
+		
+		timer = test.timer();
 		
 	}
 
@@ -48,10 +49,10 @@ public class SimpleSlickGame extends BasicGame
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		// The render function updates the displayed graphics.
-		g.drawString("Hello World!", 250, 200);
 		//Timer in seconds is drawn here
-		g.drawString(test.dispTimer(), 100, 100);
+		g.drawString(String.valueOf(timer), 100, 100);
 	
+		
 		mapOne.mapRenderer(g, mapArr);
 		
 	}
