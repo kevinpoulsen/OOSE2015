@@ -26,13 +26,15 @@ public class Player {
 	static float y2poly = 30;
 	static float x3poly = 310;
 	static float y3poly = 30;
-	
+
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
 		
-		Input input = gc.getInput(); // listens for keyboard input
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
 			fuel--;
@@ -80,19 +82,20 @@ public class Player {
 		y2poly += ySpeed + gravity;
 		y3poly += ySpeed + gravity;
 		
-		System.out.println(x1poly + " " + x2poly + " "+ x3poly);
-		System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
+		//System.out.println(x1poly + " " + x2poly + " "+ x3poly);
+		//System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
 	}
 	
-	
-	
-	public static void playerRenderer(Graphics g, GameContainer gc)
+	public static void playerRenderer(Graphics g, float rotateState, GameContainer gc)
 	{
 		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+
 		Shape shape = new Polygon(polyCoordinates);
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
-	
+		System.out.println("render rotate state " + rotateState);
+		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
+
 		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
@@ -113,18 +116,32 @@ public class Player {
 			if(angleState == -1){
 				angleState = 7;
 			}
-			System.out.println(angleState);
 		}
 		if(input.isKeyPressed(Input.KEY_RIGHT)){
 			angleState++;
 			if(angleState == 8){
 				angleState = 0;
 			}
-			System.out.println(angleState);
 		}
 		return angleState;
 
 		
-	} // void playerRotate()
+	}
+	
+	public static float playerRotate(GameContainer gc){
+	
+		Input input;
+		input = gc.getInput();
+		float rotate = 0;
+		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
+			System.out.println("Yo mama");
+			rotate = -45;
+		}
+		if(input.isKeyPressed(Input.KEY_RIGHT)){
+			System.out.println("Yo mama is so phat");
+			rotate = 45;
+		}
+		return rotate;
+	}
 
 }
