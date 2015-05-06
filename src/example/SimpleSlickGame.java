@@ -20,15 +20,16 @@ public class SimpleSlickGame extends BasicGame
 	public GameMaster test;	
 	long timer;
 	public Map mapOne = new Map();
-	float[] mapArr;
+	static float[] mapArr;
 	float rotateState;
+	boolean testBool;
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		// The init() method is only called ones
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
-		mapArr = mapOne.mapGeneration();
+		mapArr = Map.mapGeneration();
 		test = new GameMaster();
 	}
 	@Override
@@ -47,6 +48,9 @@ public class SimpleSlickGame extends BasicGame
 		Player.playerThrust(gc, Player.playerAngleState(gc));
 		timer = test.timer();
 		
+		testBool = Player.onCollision(Map.shapeArray);
+		
+		
 	}
 
 	@Override
@@ -58,9 +62,12 @@ public class SimpleSlickGame extends BasicGame
 		g.drawString(String.valueOf(Player.playerAngleState(gc)), 600, 70);
 		g.drawString("Time: ", 530, 40);
 		g.drawString(String.valueOf(timer), 600, 40);
+		g.drawString("Collision: " + testBool, 50, 50);
+		
 		mapOne.mapRenderer(g, mapArr);
 		
 		Player.playerRenderer(g,rotateState, gc);
+		
 		
 		
 		

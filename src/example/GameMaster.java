@@ -13,7 +13,7 @@ public class GameMaster {
 	boolean collides = false;
 	
 	public static void onCollision(){
-		//collides = Player.
+		
 	}
 	
 	

@@ -26,6 +26,11 @@ public class Player {
 	static float y2poly = 30;
 	static float x3poly = 310;
 	static float y3poly = 30;
+	
+	static boolean collides = false;
+	static Shape shape;
+	static float[] polyCoordinates;
+	
 
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
@@ -88,8 +93,8 @@ public class Player {
 	
 	public static void playerRenderer(Graphics g, float rotateState, GameContainer gc)
 	{
-		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-		Shape shape = new Polygon(polyCoordinates);
+		polyCoordinates = new float[]{x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+		shape = new Polygon(polyCoordinates);
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
 		System.out.println("render rotate state " + rotateState);
@@ -104,6 +109,12 @@ public class Player {
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
+	
+	public static boolean onCollision(Shape a){
+		
+		collides = shape.intersects(a);
+		return collides; 
+	}
 	
 	public static int playerAngleState(GameContainer gc)
 	{
