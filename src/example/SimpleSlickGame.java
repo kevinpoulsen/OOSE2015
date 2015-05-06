@@ -19,7 +19,7 @@ public class SimpleSlickGame extends BasicGame
 
 	public GameMaster test;	
 	long timer;
-	Map mapOne = new Map();
+	public Map mapOne = new Map();
 	float[] mapArr;
 	
 	@Override
@@ -56,9 +56,9 @@ public class SimpleSlickGame extends BasicGame
 		g.drawString(String.valueOf(Player.playerAngleState(gc)), 600, 70);
 		g.drawString("Time: ", 530, 40);
 		g.drawString(String.valueOf(timer), 600, 40);
-		Player.playerRenderer(g);
-		
 		mapOne.mapRenderer(g, mapArr);
+		Player.playerRenderer(g,Player.playerAngleState(gc), gc);
+		
 		
 	}
 

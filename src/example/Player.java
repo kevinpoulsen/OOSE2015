@@ -8,10 +8,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Polygon;
 
-
-
 public class Player {
-	//player variables: 
+	//player variables
 	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
@@ -28,17 +26,13 @@ public class Player {
 	static float y2poly = 30;
 	static float x3poly = 310;
 	static float y3poly = 30;
-	
-	static float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-	static Shape shape = new Polygon(polyCoordinates);
-	
+
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
 		
-		Input input; 
-		input = gc.getInput(); // listens for keyboard input
+		Input input = gc.getInput(); // listens for keyboard input
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
 			fuel--;
@@ -90,25 +84,31 @@ public class Player {
 		System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
 	}
 	
-	public static void playerRenderer(Graphics g)
+	public static void playerRenderer(Graphics g, int angleState, GameContainer gc)
 	{
-		
 		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
 		Shape shape = new Polygon(polyCoordinates);
+		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
+				
+		Input input = gc.getInput();
+		
+		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
+			System.out.println("Yo mama");
+			g.rotate((x1poly + x2poly)/2,(y1poly + y2poly)/2, -45);
+		}
+		if(input.isKeyPressed(Input.KEY_RIGHT)){
+			System.out.println("Yo mama is so phat");
+			g.rotate((x1poly + x2poly)/2,(y1poly + y2poly)/2, 45);
+		}
+
 		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
-		
 		g.setColor(new Color(255,255,255));
 		g.draw(shape);
-		
-		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
-		
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
-	
-	
 	
 	public static int playerAngleState(GameContainer gc)
 	{
