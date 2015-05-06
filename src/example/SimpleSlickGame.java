@@ -1,12 +1,11 @@
 package example;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class SimpleSlickGame extends BasicGame
@@ -15,13 +14,16 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
-
+	
+	Map mapOne = new Map();
+	float[] mapArr = mapOne.mapGeneration();
+	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
+		
 		// The init() method is only called ones
 		// this is were we place all the stuff needed for the game
-		// In our case where we create all the objects (player,map and so on). 
-		
+		// In our case where we create all the objects (player,map and so on).
 	}
 
 	@Override
@@ -31,29 +33,17 @@ public class SimpleSlickGame extends BasicGame
 		
 		// int i, i is delta, the integer is the number of miliseconds between each update.
 		// an example if you have 10 fps, i = 100
-		Input input;
-		input = gc.getInput();
-			
-		if(input.isKeyDown(Input.KEY_SPACE))
-		{
-			Player.y1--;
-		}
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		// The render function updates the displayed graphics.
-		g.drawString("Hello World!", 250, 200);
-		Player p = new Player();
-		p.playerDraw(g);
-		
-		
+		mapOne.mapRenderer(g, mapArr);
 	}
 
 	public static void main(String[] args) // This function starts up the game.
-	{
-	
+	{		
 		try
 		{
 			AppGameContainer appgc;
