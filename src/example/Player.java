@@ -86,7 +86,7 @@ public class Player {
 	{
 		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
 		
-		//g.drawOval(xPosition, yPosition, 50, 50);
+		g.drawOval(xPosition, yPosition, 50, 50);
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
 		
@@ -106,8 +106,6 @@ public class Player {
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
-	
-	
 	
 	public static int playerAngleState(GameContainer gc)
 	{
