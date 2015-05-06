@@ -15,10 +15,11 @@ public class Player {
 	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
-	int fuel;	   // fuel decreases as the players uses thrust
+	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
 	static int angleState; // determines the way the player is facing,
 	
+	static String fuelLeft = " Fuel"; // used to display fuel left on the game screen
 	static float xPosition = 100;
 	static float yPosition = 300;
 	
@@ -42,8 +43,9 @@ public class Player {
 		input = gc.getInput(); // listens for keyboard input
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
+			fuel--;
 			
-			if(angleState == 0){
+		 	if(angleState == 0){
 				ySpeed -= ns; 
 			}
 			if(angleState == 1){
@@ -91,6 +93,7 @@ public class Player {
 		g.setColor(new Color(255,255,255));
 		g.draw(shape);
 		
+		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		// Main player:
 		// draw player (in shape of a triangle) using position x and y.
 		// function must be updated all the time
