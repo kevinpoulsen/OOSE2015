@@ -20,8 +20,6 @@ public class Player {
 	static int angleState; // determines the way the player is facing,
 	
 	static String fuelLeft = " Fuel"; // used to display fuel left on the game screen
-	static float xPosition = 100;
-	static float yPosition = 300;
 	
 	// Declare and initialize player positions
 	static float x1poly = 300;
@@ -31,13 +29,10 @@ public class Player {
 	static float x3poly = 310;
 	static float y3poly = 30;
 	
-	static float[] polyKoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-	private static Shape shape = new Polygon(polyKoordinates);
-	
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
-		float ds = 0.0001f; // diagonal speed
-		float ns = 0.0002f; // normal speed
+		float ds = 0.0005f; // diagonal speed
+		float ns = 0.001f; // normal speed
 		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
@@ -77,32 +72,44 @@ public class Player {
 	}// void playerThrust
 	
 	public static void playerPosition(){
-		gravity += 0.00001f;
-		xPosition += xSpeed;
-		yPosition += ySpeed + gravity;
+		
+		// this class needs modifications 
+		
+		gravity += 0.00001f;// there is a problem with the gravity implementation
+		x1poly += xSpeed;
+		x2poly += xSpeed;
+		x3poly += xSpeed;
+		y1poly += ySpeed + gravity;
+		y2poly += ySpeed + gravity;
+		y3poly += ySpeed + gravity;
+		
+		System.out.println(x1poly + " " + x2poly + " "+ x3poly);
+		System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
 	}
 	
-	public static void playerRenderer(Graphics g)
+	public static void playerRenderer(Graphics g, int angleState, GameContainer gc)
 	{
-		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
+		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
+		Shape shape = new Polygon(polyCoordinates);
+		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
 		
-		g.drawOval(xPosition, yPosition, 50, 50);
+		
+		Input input = gc.getInput();
+		
+		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
+			System.out.println("Yo mama");
+			g.rotate((x1poly + x2poly)/2,(y1poly + y2poly)/2, -45);
+		}
+		if(input.isKeyPressed(Input.KEY_RIGHT)){
+			System.out.println("Yo mama is so phat");
+			g.rotate((x1poly + x2poly)/2,(y1poly + y2poly)/2, 45);
+		}
+
+		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
-		
 		g.setColor(new Color(255,255,255));
 		g.draw(shape);
-		
-		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
-		// Main player:
-		// draw player (in shape of a triangle) using position x and y.
-		// function must be updated all the time
-		// uses the angleState to draw the player,
-		// angleState 0 is when the player is in the neutral upright position
-	    // angleState 1 is +45 degrees
-		// angleState 7 is +315 degrees
-		
-		
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
@@ -113,7 +120,7 @@ public class Player {
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
 		
-		if(input.isKeyPressed(input.KEY_LEFT)){ //if left arrow key is pressed
+		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
 			angleState--;
 			if(angleState == -1){
 				angleState = 7;
