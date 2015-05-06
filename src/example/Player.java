@@ -8,10 +8,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Polygon;
 
-
-
 public class Player {
-	//player variables: 
+	//player variables
 	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
@@ -97,6 +95,7 @@ public class Player {
 		System.out.println("render rotate state " + rotateState);
 		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
 		
+
 		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);

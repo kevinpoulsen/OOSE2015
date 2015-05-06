@@ -19,7 +19,7 @@ public class SimpleSlickGame extends BasicGame
 
 	public GameMaster test;	
 	long timer;
-	Map mapOne = new Map();
+	public Map mapOne = new Map();
 	float[] mapArr;
 	float rotateState;
 	
@@ -59,6 +59,7 @@ public class SimpleSlickGame extends BasicGame
 		g.drawString("Time: ", 530, 40);
 		g.drawString(String.valueOf(timer), 600, 40);
 		mapOne.mapRenderer(g, mapArr);
+		
 		Player.playerRenderer(g,rotateState, gc);
 		
 		
