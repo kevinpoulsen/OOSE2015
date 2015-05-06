@@ -1,4 +1,5 @@
 package example;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,3 +71,4 @@ public class SimpleSlickGame extends BasicGame
 		}
 	}
 }
+
