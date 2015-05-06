@@ -82,10 +82,6 @@ public class SimpleSlickGame extends BasicGame
 		
 	}
 
-		Player.playerRenderer(g,currStates[1], gc);
-		
-
-	
 	
 	public static void main(String[] args) // This function starts up the game.
 	{		
