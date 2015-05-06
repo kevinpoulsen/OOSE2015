@@ -26,7 +26,7 @@ public class Player {
 	static float y2poly = 30;
 	static float x3poly = 310;
 	static float y3poly = 30;
-	
+
 	public static void playerThrust(GameContainer gc, int angleState)
 	{
 		float ds = 0.0005f; // diagonal speed

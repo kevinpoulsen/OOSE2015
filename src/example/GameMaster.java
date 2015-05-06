@@ -10,6 +10,12 @@ public class GameMaster {
 	String drawTimer;
 	int remainFuel;
 	
+	boolean collides = false;
+	
+	public static void onCollision(){
+		//collides = Player.
+	}
+	
 	
 	public long timer(){
 		ellapsedTime = System.currentTimeMillis() - startTime;
@@ -21,6 +27,8 @@ public class GameMaster {
 		
 		return remainFuel;	
 	}
+	
+	
 	
 	
 	
