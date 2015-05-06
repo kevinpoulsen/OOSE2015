@@ -1,10 +1,12 @@
 package example;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class SimpleSlickGame extends BasicGame
@@ -29,7 +31,13 @@ public class SimpleSlickGame extends BasicGame
 		
 		// int i, i is delta, the integer is the number of miliseconds between each update.
 		// an example if you have 10 fps, i = 100
-		
+		Input input;
+		input = gc.getInput();
+			
+		if(input.isKeyDown(Input.KEY_SPACE))
+		{
+			Player.y1--;
+		}
 	}
 
 	@Override
@@ -37,11 +45,15 @@ public class SimpleSlickGame extends BasicGame
 	{
 		// The render function updates the displayed graphics.
 		g.drawString("Hello World!", 250, 200);
+		Player p = new Player();
+		p.playerDraw(g);
+		
+		
 	}
 
 	public static void main(String[] args) // This function starts up the game.
 	{
-		
+	
 		try
 		{
 			AppGameContainer appgc;
@@ -55,3 +67,4 @@ public class SimpleSlickGame extends BasicGame
 		}
 	}
 }
+
