@@ -41,6 +41,7 @@ public class SimpleSlickGame extends BasicGame
 
 		//timer in seconds is updated here
 		
+		Player.playerRotate(gc);
 		timer = test.timer();
 		
 	}
