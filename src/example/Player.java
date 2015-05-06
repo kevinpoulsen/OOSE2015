@@ -16,10 +16,10 @@ public class Player {
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
 	
-	static float angleState; // angleState, used in playerStates() 
-	static float rotateState; // rotateState, used in playerStates()
-	
 	static String fuelLeft = " Fuel"; // used to display fuel left on the game screen
+	
+	static float angleState = 0;
+	static float rotateState = 0;
 	
 	// Declare and initialize player positions
 	static float x1poly = 300;
@@ -113,7 +113,7 @@ public class Player {
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
 
-		float[] currArr = new float[2];
+		float[] states = new float[2];
 		
 		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
 			angleState--;
@@ -130,11 +130,10 @@ public class Player {
 				angleState = 0;
 			}
 		}
-		currArr[0] = angleState;
-		currArr[1] = rotateState;
-		
-		return currArr;
 
-		
-	}
-}
+		states[0] = angleState;
+		states[1] = rotateState;
+		return states;
+	}// static float playerStates()
+}// class Player
+
