@@ -89,14 +89,7 @@ public class Player {
 		float[] polyCoordinates = {x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
 		Shape shape = new Polygon(polyCoordinates);
 		g.drawString(String.valueOf(fuel) + fuelLeft, 530, 10);
-		
-		g.rotate(x2poly+x1poly/2,y2poly+y1poly/2, 45);
-		g.setColor(new Color(255,255,0));
-		g.fill(shape);
-		g.setColor(new Color(255,255,255));
-		g.draw(shape);
-		
-		
+				
 		Input input = gc.getInput();
 		
 		if(input.isKeyPressed(Input.KEY_LEFT)){ //if left arrow key is pressed
