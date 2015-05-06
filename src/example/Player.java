@@ -20,7 +20,7 @@ public class Player {
 	float ySpeed;  // players speed in the y direction
 	int fuel;	   // fuel decreases as the players uses thrust
 	float gravity; // gravity pulls player in the +y direction
-	int angleState; // determines the way the player is facing,
+	static int angleState; // determines the way the player is facing,
 					// this alters the way the thrust function will move the player
 	
 	static float x1 = 100;
@@ -30,6 +30,8 @@ public class Player {
 	
 	public static void playerThrust(GameContainer gc)
 	{
+		
+		
 		/*if (key.space)
 			move player in direction player is facing
 			
@@ -67,17 +69,30 @@ public class Player {
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
 	
-	public static void playerRotate()
+	public static void playerRotate(GameContainer gc)
 	{
-		// should enable the player to rotate to 8 different angles using the arrow keys on the keyboard.
-		// if(key.left && angleState <= 0)
-		// angleState++;
 		
-		// if(key.right && angleState >= 7)
-		// angleState--;
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
 		
+		if(input.isKeyPressed(input.KEY_LEFT)){ //if left arrow key is pressed
+			angleState--;
+			if(angleState == -1){
+				angleState = 7;
+			}
+			System.out.println(angleState);
+		}
+		if(input.isKeyPressed(input.KEY_RIGHT)){
+			angleState++;
+			if(angleState == 8){
+				angleState = 0;
+			}
+			System.out.println(angleState);
+		}
+		
+		// if angleState changes rotate player
 
 		
-	}
+	} // void playerRotate()
 
 }
