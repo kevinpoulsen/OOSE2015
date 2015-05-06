@@ -3,11 +3,13 @@ package example;
 import java.util.Random;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Shape;
 
 
 public class Map{
 
-	public float[] mapGeneration (){
+	public static float[] mapGeneration (){
 
 		Random rnd = new Random();
 		
@@ -48,6 +50,8 @@ public class Map{
 		
 		return pointArr;
 	}// float[] mapGeneration.
+	
+	public static Shape shapeArray = new Polygon(mapGeneration());
 	
 	public void mapRenderer(Graphics g, float[] arr){
 		// Draw line between points.
