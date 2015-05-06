@@ -12,48 +12,70 @@ import org.newdawn.slick.SlickException;
 public class Player {
 	//player variables: 
 	
-	int xPosition; // players x position on the screen
-	int yPosition; // players y position on the screen
-	
-	float xSpeed;  // players speed in the x direction
-	float ySpeed;  // players speed in the y direction
+	static float xSpeed;  // players speed in the x direction
+	static float ySpeed;  // players speed in the y direction
 	int fuel;	   // fuel decreases as the players uses thrust
-	float gravity; // gravity pulls player in the +y direction
+	static float gravity = 0.2f; // gravity pulls player in the +y direction
 	static int angleState; // determines the way the player is facing,
 					// this alters the way the thrust function will move the player
 	
-	static float x1 = 100;
-	static float y1 = 300;
+	static float xPosition = 100;
+	static float yPosition = 300;
 	static int width = 25;
 	static int height = 25;
 	
-	public static void playerThrust(GameContainer gc)
+	public static void playerThrust(GameContainer gc, int angleState)
 	{
+		float ds = 0.0001f; // diagonal speed
+		float ns = 0.0002f; // normal speed
 		
-		
-		/*if (key.space)
-			move player in direction player is facing
-			
-		*/
-		
-		// using keyboard input: 
-		/*Input input;
-		input = gc.getInput();
-			
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
 		if(input.isKeyDown(Input.KEY_SPACE))
 		{
-			Player.y1--;
-		}*/
-		
-		
-		
+			
+			if(angleState == 0){
+				ySpeed -= ns; 
+			}
+			if(angleState == 1){
+				ySpeed -= ds;
+				xSpeed += ds;
+			}
+			if(angleState == 2){
+				xSpeed +=ns;
+			}
+			if(angleState == 3){
+				ySpeed += ds;
+				xSpeed += ds;
+			}
+			if(angleState == 4){
+				ySpeed += ns;
+			}
+			if(angleState == 5){
+				ySpeed += ds;
+				xSpeed -= ds;
+			}
+			if(angleState == 6){
+				xSpeed -= ns;
+			}
+			if(angleState == 7){
+				ySpeed -= ds;
+				xSpeed -= ds;
+			}
+		}// if (input.isKeyDown(Input.KEY_SPACE))
+	}// void playerThrust
+	
+	public static void playerPosition(){
+		gravity += 0.00001f;
+		xPosition += xSpeed;
+		yPosition += ySpeed + gravity;
 	}
 	
 	public static void playerRenderer(Graphics g)
 	{
 		// gc.drawRect uses an x and y position and a width and height input to draw a rectangle
 		
-		g.drawRect(x1, y1, width, height);
+		g.drawOval(xPosition, yPosition, 50, 50);
 		
 		// Main player:
 		// draw player (in shape of a triangle) using position x and y.
@@ -68,7 +90,9 @@ public class Player {
 		// when playerThrust is being called, draw some exhaust at the bottom of player
 	}	
 	
-	public static void playerRotate(GameContainer gc)
+	
+	
+	public static int playerAngleState(GameContainer gc)
 	{
 		
 		Input input; 
@@ -88,8 +112,7 @@ public class Player {
 			}
 			System.out.println(angleState);
 		}
-		
-		// if angleState changes rotate player
+		return angleState;
 
 		
 	} // void playerRotate()
