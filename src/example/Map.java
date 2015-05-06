@@ -1,13 +1,8 @@
 package example;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Random;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.GameContainer;
+
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 
 public class Map{
@@ -16,7 +11,7 @@ public class Map{
 
 		Random rnd = new Random();
 		
-		// initializing the 30 koordinates that creates the map.
+		// initializing the 30 coordinates that creates the map.
 		float[] pointArr = {
 				0,rnd.nextInt(400)+100,//(x,y) 1
 				22,rnd.nextInt(400)+100,// 2
