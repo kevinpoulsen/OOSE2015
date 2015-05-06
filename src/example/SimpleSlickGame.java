@@ -15,22 +15,21 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
+
 	
 	public GameMaster test;	
 	long timer;
 	Map mapOne = new Map();
-	float[] mapArr = mapOne.mapGeneration();
+	float[] mapArr;
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		
 		// The init() method is only called ones
 		// this is were we place all the stuff needed for the game
-		// In our case where we create all the objects (player,map and so on). 
+		// In our case where we create all the objects (player,map and so on).
+		mapArr = mapOne.mapGeneration();
 		test = new GameMaster();
-
 	}
-
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
 		// The update function updates your game logic
@@ -63,7 +62,7 @@ public class SimpleSlickGame extends BasicGame
 		{
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick Game"));
-			appgc.setDisplayMode(640, 480, false);
+			appgc.setDisplayMode(640, 600, false);
 			appgc.start();
 		}
 		catch (SlickException ex)
