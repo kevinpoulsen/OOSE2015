@@ -15,17 +15,19 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
-
 	
-	public GameMaster test;
+	public GameMaster test;	
+	Map mapOne = new Map();
+	float[] mapArr = mapOne.mapGeneration();
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
+		
 		// The init() method is only called ones
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on). 
 		test = new GameMaster();
-		
+
 	}
 
 	@Override
@@ -49,11 +51,12 @@ public class SimpleSlickGame extends BasicGame
 		//Timer in seconds is drawn here
 		g.drawString(test.dispTimer(), 100, 100);
 	
+		mapOne.mapRenderer(g, mapArr);
+		
 	}
 
 	public static void main(String[] args) // This function starts up the game.
-	{
-		
+	{		
 		try
 		{
 			AppGameContainer appgc;
