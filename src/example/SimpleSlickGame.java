@@ -7,7 +7,10 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -159,14 +162,7 @@ public class SimpleSlickGame extends BasicGame
 		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 3){
 			score+= Player.fuel/GameMaster.timer;
 			gameState = 3;
-		}
-		
-		Input input; 
-		input = gc.getInput(); // listens for keyboard input
-		
-		if(input.isKeyPressed(Input.KEY_T)){
-			gameState = 3;
-		}
+		}		
 		
 		if(winBool == true){
 			GameMaster.gameWon();
