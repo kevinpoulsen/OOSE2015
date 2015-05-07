@@ -112,17 +112,15 @@ public class Player {
 		g.draw(shape);
 		
 		// Exhaust:
-		// when playerThrust is being called, draw some exhaust at the bottom of player
 		if(thrust){
 			
-			exhaustCoordinates = new float[]{x1poly+10,y1poly,x2poly,y2poly,x3poly,y3poly};
+			exhaustCoordinates = new float[]{x1poly,y1poly+40,x2poly,y2poly,x3poly,y3poly};
 			shape = new Polygon(exhaustCoordinates);
 			g.fill(shape);
 			g.setColor(new Color(255,255,255));
 			g.draw(shape);
 			thrust = false;
 		}
-		
 	}	
 
 	public static boolean onCollision(Shape a){
@@ -130,7 +128,7 @@ public class Player {
 		return collides; 
 	}
 	
-	// warns user is player is off screen. Must be used to create a loss condition
+	// warns user if player is off screen. Must be used to create a loss condition
 	public static boolean playerOffScreen(GameContainer gc){
 		
 		if(x1poly > gc.getWidth() || x1poly < 0 || y1poly > gc.getHeight() || y1poly < 0){

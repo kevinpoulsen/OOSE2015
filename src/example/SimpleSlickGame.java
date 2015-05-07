@@ -7,7 +7,9 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 
 public class SimpleSlickGame extends BasicGame
@@ -16,7 +18,10 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
-
+	
+	private Music music; // variable to hold music sound files
+	private Sound sound; // variable to hold sound effect files
+	
 	public GameMaster test;	
 	long timer;
 	public Map mapOne = new Map();
@@ -35,6 +40,9 @@ public class SimpleSlickGame extends BasicGame
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
 		test = new GameMaster();
+		music = new Music("sounds/music.wav");
+		music.play();
+		
 	}
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
