@@ -16,17 +16,21 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
-
-	static int ScreenWidth = 640;
-	static int ScreenHeight = 600;
 	
 	public GameMaster gm;	
+
+	static int screenWidth = 640;
+	static int screenHeight = 600;
+	
+	int gameState;
+		
 	long timer;
 	int fuel;
 	public Map mapOne = new Map();
 
 	float rotateState;
-	boolean testBool;
+	boolean collisionBool;
+	boolean offScreenBool;
 
 	float[] mapArr;
 	
@@ -39,6 +43,7 @@ public class SimpleSlickGame extends BasicGame
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
 		gm = new GameMaster();
+		gameState = 0;
 	}
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
@@ -61,7 +66,33 @@ public class SimpleSlickGame extends BasicGame
 		Player.playerOffScreen(gc); // warns user if player is off screen
 
 		timer = gm.timer();
-		testBool = Player.onCollision(Map.mapShape);
+
+		collisionBool = Player.onCollision(Map.mapShape);
+		offScreenBool = Player.playerOffScreen(gc);
+		
+		if(collisionBool == true){
+			gameState = 2;
+		}
+		
+		if(Player.fuel <= 0){
+			gameState = 2;
+		}
+		
+		if(offScreenBool == true){
+			gameState = 2;
+		}
+		
+		if(gameState == 0){
+			
+		}
+		
+		if(gameState == 1){
+			
+		}
+
+		if(gameState == 2){
+	
+		}
 	}
 
 	@Override
@@ -69,6 +100,19 @@ public class SimpleSlickGame extends BasicGame
 	{
 		// The render function updates the displayed graphics.
 		//Timer in seconds is drawn here
+		
+		if(gameState == 0){
+			
+		}
+		
+		if(gameState == 1){
+			
+		}
+
+		if(gameState == 2){
+	
+		}
+		g.drawString("State " + gameState, 100, 100);
 		mapOne.mapRenderer(g, mapArr);
 		Player.playerRenderer(g,currStates[1], gc);
 	}
@@ -80,7 +124,8 @@ public class SimpleSlickGame extends BasicGame
 		{
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick Game"));
-			appgc.setDisplayMode(ScreenWidth, ScreenHeight, false);
+
+			appgc.setDisplayMode(screenWidth, screenHeight, false);
 			appgc.start();
 		}
 		catch (SlickException ex)

@@ -134,8 +134,10 @@ public class Player {
 	// warns user is player is off screen. Must be used to create a loss condition
 	public static boolean playerOffScreen(GameContainer gc){
 		
-		if(x1poly > gc.getWidth() || x1poly < 0 || y1poly > gc.getHeight() || y1poly < 0  ){
-			System.out.println("Player is off screen");
+		if(x1poly > gc.getWidth() || x1poly < 0 || y1poly > gc.getHeight() || y1poly < 0 || 
+				x2poly > gc.getWidth() || x2poly < 0 || y2poly > gc.getHeight() || y2poly < 0|| 
+					x3poly > gc.getWidth() || x3poly < 0 || y3poly > gc.getHeight() || y3poly < 0){
+						//System.out.println("Player is off screen");
 			return true;
 		}
 		return false;

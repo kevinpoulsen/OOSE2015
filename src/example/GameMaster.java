@@ -9,7 +9,6 @@ public class GameMaster {
 	long ellapsedTime;
 	long ellapsedSeconds;
 	String drawTimer;
-	int remainFuel;	
 	
 	public long timer(){
 		ellapsedTime = System.currentTimeMillis() - startTime;
