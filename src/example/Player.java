@@ -20,9 +20,12 @@ public class Player {
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
+
 	//public Sound soundThrust;
 	public static Sound soundThrust;
 	
+
+	static float yCond;
 	
 	static boolean thrust = false; // boolean to tell if thrust is being used, this is used to render the exhaust
 
@@ -96,23 +99,20 @@ public class Player {
 	
 	
 	
-	public static int fuelLeft(){
-			int a = fuel;
-			return a;
-	}
-	
-	
 	public static void playerPosition(){
 		
 		// this class needs modifications 
 		
 		gravity += 0.00001f;// there is a problem with the gravity implementation
+		
 		x1poly += xSpeed;
 		x2poly += xSpeed;
 		x3poly += xSpeed;
 		y1poly += ySpeed + gravity;
 		y2poly += ySpeed + gravity;
 		y3poly += ySpeed + gravity;
+		
+		yCond = (ySpeed + gravity) *100;
 		
 		//System.out.println(x1poly + " " + x2poly + " "+ x3poly);
 		//System.out.println(y1poly + " "+ y2poly + " "+ y3poly);

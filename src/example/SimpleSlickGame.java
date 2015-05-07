@@ -27,6 +27,7 @@ public class SimpleSlickGame extends BasicGame
 
 	// Declaring GameMaster class.
 	public GameMaster gm;	
+	
 	// Declaring screen width and height.
 	static int screenWidth = 640;
 	static int screenHeight = 600;
@@ -34,20 +35,25 @@ public class SimpleSlickGame extends BasicGame
 	int gameState;
 	
 	int score;
-	long timer;
-	int fuel;
-	public Map mapOne = new Map();
 
 	float rotateState;
 	
-	//Declaring booleans for loss conditions
+	// Declaring booleans for loss conditions
 	boolean collisionBool;
 	boolean offScreenBool;
 	boolean continueBool;
 	boolean play = true; //boolean to ensure that the "blast" sound is only played once upon death
 
+	
+	// Declaring booleans for win conditions
+	boolean padOneBool;
+	boolean padTwoBool;
+	boolean padThreeBool;
+
+	// Stores 
 	float[] mapArr;
 	
+	// Stores angleState and rotateState from Class Player (currStates[0] = angleState and currStates[1] = rotateState)
 	float[] currStates = new float[2];
 	
 	@Override
@@ -60,7 +66,8 @@ public class SimpleSlickGame extends BasicGame
 		soundThrust = new Sound("sounds/thrust.ogg");
 		blast = new Sound("sounds/blastLow.ogg");
 		
-		gm = new GameMaster();
+		gm = new GameMaster(); ////// KEEP?
+
 		gameState = 0;
 		score = 10;
 
@@ -80,8 +87,7 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 1){
-			timer = gm.timer();
-			fuel = Player.fuelLeft();
+			GameMaster.timer();
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
 			Player.playerThrust(gc, currStates[0]);
@@ -91,6 +97,10 @@ public class SimpleSlickGame extends BasicGame
 			collisionBool = Player.onCollision(Map.mapShape);
 			// is set to bool condition of playerOffScreen method in player class. Checks if any of the player coordinates is outside gamescreen.
 			offScreenBool = Player.playerOffScreen(gc);
+			// Is set to bool condition of onCollision method which checks collision between player and rectangles(landing pads)
+			padOneBool = Player.onCollision(Map.rectOne);
+			padTwoBool = Player.onCollision(Map.rectTwo);
+			padThreeBool = Player.onCollision(Map.rectThree);
 		}
 		
 		if(gameState == 2){
@@ -98,6 +108,10 @@ public class SimpleSlickGame extends BasicGame
 			blast.play();
 			play = false;	// sets the boolean play to false so that "blast" will not be played again
 			}
+		}
+		
+		if(gameState == 3){
+
 		}
 		
 		if(continueBool == true){
@@ -119,6 +133,19 @@ public class SimpleSlickGame extends BasicGame
 		if(offScreenBool == true){
 			gameState = 2;
 		}
+		// Win condition. Checks if player have collided with the landing pads in the correct angle state, 
+		//and with the correct amount of speed along the y axis. Sets the game state to 3 if all requirements is met.
+		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 2){
+			gameState = 3;
+		}
+		// Same win condition, another landing pad.
+		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 2){
+			gameState = 3;
+		}
+		// Same win condition, last landing pad.
+		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 2){
+			gameState = 3;
+		}
 	}
 
 	@Override
@@ -131,13 +158,18 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 1){
-			GameMaster.GUIRenderOne(g, timer, fuel, screenWidth, screenHeight);
-			mapOne.mapRenderer(g, mapArr);
+			GameMaster.GUIRenderOne(g,screenWidth, screenHeight);
+			Map.mapRenderer(g,mapArr);
 			Player.playerRenderer(g,currStates[1], gc);
+			
 		}
 
 		if(gameState == 2){
 			GameMaster.GUIRenderTwo(g, score, screenWidth, screenHeight);
+		}
+		
+		if(gameState == 3){
+			GameMaster.GUIrenderThree(g, score, screenWidth, screenHeight);
 		}
 	}
 

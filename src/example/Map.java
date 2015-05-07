@@ -2,9 +2,9 @@ package example;
 
 import java.util.Random;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 
@@ -13,7 +13,10 @@ public class Map{
 	
 	static float [] pointArr;
 	public static Shape mapShape;
-		
+	public static Rectangle rectOne;
+	public static Rectangle rectTwo;
+	public static Rectangle rectThree;
+	
 	public static float[] mapGeneration (){
 
 		Random rnd = new Random();
@@ -56,10 +59,23 @@ public class Map{
 		return pointArr;
 	}// float[] mapGeneration.
 	
-	public void mapRenderer(Graphics g, float[] arr){
+	public static void mapRenderer(Graphics g, float[] arr){
 		// Draw line between points.
 		mapShape =  new Polygon(pointArr);
 		g.draw(mapShape);
+		
+		//Color padsColor = new Color(255,0,0);
+		//g.setColor(padsColor);
+		rectOne = new Rectangle(88, 499, 32, 2);
+		g.fill(rectOne);
+		g.draw(rectOne);
+		rectTwo = new Rectangle(242, 399, 42, 2);
+		g.fill(rectTwo);
+		g.draw(rectTwo);
+		rectThree = new Rectangle(570, 299, 22, 2);
+		g.fill(rectThree);
+		g.draw(rectThree);
+		
 		
 //		g.drawLine(88,499,120,499); // marking landing pads
 //		g.drawLine(242,399,284,399); // marking landing pads
