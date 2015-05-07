@@ -99,13 +99,5 @@ public class Map{
 		rectThree = new Rectangle(pointArr[padsThree-1], pointArr[padsThree]-1, 19, 2);
 		//g.fill(rectThree);
 		g.draw(rectThree);
-		
-		
-//		g.drawLine(88,499,120,499); // marking landing pads
-//		g.drawLine(242,399,284,399); // marking landing pads
-//		g.drawLine(570,299,592,299); // marking landing pads
-//		g.drawString("x4", 94, 502); // display point bonus
-//		g.drawString("x2", 252, 402); // display point bonus
-//		g.drawString("x8", 571, 302); // display point bonus
-	} // mapRenderer()
+	}
 }// Class Map

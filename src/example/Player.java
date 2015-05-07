@@ -110,7 +110,7 @@ public class Player {
 		
 		// this class needs modifications 
 		
-		gravity += 0.000015f;// there is a problem with the gravity implementation
+		gravity += 0.000018f;// there is a problem with the gravity implementation
 		
 		x1poly += xSpeed;
 		x2poly += xSpeed;

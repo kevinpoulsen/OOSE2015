@@ -22,11 +22,6 @@ public class GameMaster {
 		timer = ellapsedSeconds;
 	}
 	
-//	public static int scoreSystem(int fuel, long timer){
-//		int scores;
-//		scores = 10;
-//		return scores;
-//	}
 	
 	public static boolean enterClick(GameContainer gc){
 		
@@ -81,7 +76,6 @@ public class GameMaster {
 		g.setColor(new Color(255,255,255));
 		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
-		//g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
 		g.drawString("Vertical speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
 		g.drawString("Horizontal speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
 		g.drawString("Score: " + SimpleSlickGame.score, (float)(ScreenWidth/1.2) , (float)(ScreenHeight/7.5));
@@ -103,8 +97,6 @@ public class GameMaster {
 	
 	public static void gameOver(){
 		Player.fuel = 1000;
-		//startTime = System.currentTimeMillis();
-		// SimpleSlickGame.score = 0;
 		SimpleSlickGame.score = 0;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
@@ -124,8 +116,6 @@ public class GameMaster {
 	
 	public static void gameWon(){
 		Player.fuel = 1000;
-//		tempScore = SimpleSlickGame.score;
-//		SimpleSlickGame.score = SimpleSlickGame.score + tempScore;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
