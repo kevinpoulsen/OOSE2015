@@ -65,15 +65,15 @@ public class Map{
 		g.draw(mapShape);
 		
 		//Color padsColor = new Color(255,0,0);
-		//g.setColor(padsColor);
+		//g.setColor(new Color(255,255,255));
 		rectOne = new Rectangle(88, 499, 32, 2);
-		g.fill(rectOne);
+		//g.fill(rectOne);
 		g.draw(rectOne);
 		rectTwo = new Rectangle(242, 399, 42, 2);
-		g.fill(rectTwo);
+		//g.fill(rectTwo);
 		g.draw(rectTwo);
 		rectThree = new Rectangle(570, 299, 22, 2);
-		g.fill(rectThree);
+		//g.fill(rectThree);
 		g.draw(rectThree);
 		
 		

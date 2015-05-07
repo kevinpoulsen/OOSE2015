@@ -80,7 +80,7 @@ public class SimpleSlickGame extends BasicGame
 		// GameState Listener 
 		if(gameState == 0){
 			resetBool = false;
-			GameMaster.printGameOver();
+			//GameMaster.printGameOver();
 			continueBool = GameMaster.enterClick(gc);
 			music.play(); // starts the background music
 			
@@ -88,7 +88,7 @@ public class SimpleSlickGame extends BasicGame
 		
 		if(gameState == 1){
 			play = true; // sets play to true so the "blast" sound can be replayed
-			continueBool = false;
+
 			GameMaster.timer();
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
@@ -103,6 +103,8 @@ public class SimpleSlickGame extends BasicGame
 			padOneBool = Player.onCollision(Map.rectOne);
 			padTwoBool = Player.onCollision(Map.rectTwo);
 			padThreeBool = Player.onCollision(Map.rectThree);
+			continueBool = false;
+			winBool = false;
 		}
 		
 		if(gameState == 2){
@@ -119,7 +121,6 @@ public class SimpleSlickGame extends BasicGame
 			padTwoBool = false;
 			padThreeBool = false;
 			winBool = GameMaster.wClick(gc);
-
 		}
 		
 		if(continueBool == true){
@@ -142,23 +143,25 @@ public class SimpleSlickGame extends BasicGame
 		}
 		// Win condition. Checks if player have collided with the landing pads in the correct angle state, 
 		//and with the correct amount of speed along the y axis. Sets the game state to 3 if all requirements is met.
-		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 2){
+		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 5){
 			gameState = 3;
 		}
 		// Same win condition, another landing pad.
-		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 2){
+		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 5){
 			gameState = 3;
 		}
 		// Same win condition, last landing pad.
-		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 2){
+		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 5){
 			gameState = 3;
 		}
+		
 		if(winBool == true){
+			GameMaster.gameWon();
 			gameState = 1;
 		}
 		
 		if(resetBool == true){
-			GameMaster.GameOver();
+			GameMaster.gameOver();
 			gameState = 0;
 		}
 	}
@@ -166,26 +169,22 @@ public class SimpleSlickGame extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		g.drawString("State " + gameState, 100, 100);
+//		g.drawString("State " + gameState, 100, 100);
+//		g.drawString("bool" + continueBool, 400, 100);
+//		g.drawString("colBool" + collisionBool, 400, 120);
 		
 		if(gameState == 0){
-			g.drawString("bool" + continueBool, 400, 100);
-			g.drawString("colBool" + collisionBool, 400, 120);
 			GameMaster.GUIRenderZero(g, screenWidth, screenHeight);
 		}
 		
 		if(gameState == 1){
 			GameMaster.GUIRenderOne(g,screenWidth, screenHeight);
 			Map.mapRenderer(g,mapArr);
-			g.drawString("bool" + continueBool, 400, 100);
-			g.drawString("colBool" + collisionBool, 400, 120);
 			Player.playerRenderer(g,currStates[1], gc);
 			
 		}
 
 		if(gameState == 2){
-			g.drawString("bool" + continueBool, 400, 100);
-			g.drawString("colBool" + collisionBool, 400, 120);
 			GameMaster.GUIRenderTwo(g, score, screenWidth, screenHeight);
 		}
 		
