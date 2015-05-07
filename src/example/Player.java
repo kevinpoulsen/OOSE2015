@@ -43,7 +43,6 @@ public class Player {
 	static boolean collides = false;
 	static Shape shape;
 	static float[] polyCoordinates;
-	
 
 	public static void playerThrust(GameContainer gc, float angleState)
 	{
@@ -114,18 +113,18 @@ public class Player {
 		
 		yCond = (ySpeed + gravity) *100;
 		
-		//System.out.println(x1poly + " " + x2poly + " "+ x3poly);
-		//System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
+		System.out.println("TOOOOOPPPPP "+ yCond);
+
 	}
 	
 	public static void playerRenderer(Graphics g, float rotateState, GameContainer gc)
-	{
+	{	
 		polyCoordinates = new float[]{x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-
-		float exhaustCoordinates[] = new float[6];
 		
 		shape = new Polygon(polyCoordinates);
 
+		float[] exhaustCoordinates = new float[6];
+		
 		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
 		g.draw(shape);
 		
@@ -138,8 +137,6 @@ public class Player {
 		
 		// Exhaust:
 		if(thrust){
-			
-			// draws exhaust
 			exhaustCoordinates = new float[]{x1poly,y1poly+40,x2poly,y2poly,x3poly,y3poly};
 			shape = new Polygon(exhaustCoordinates);
 			g.fill(shape);
@@ -160,7 +157,6 @@ public class Player {
 		if(x1poly > gc.getWidth() || x1poly < 0 || y1poly > gc.getHeight() || y1poly < 0 || 
 				x2poly > gc.getWidth() || x2poly < 0 || y2poly > gc.getHeight() || y2poly < 0|| 
 					x3poly > gc.getWidth() || x3poly < 0 || y3poly > gc.getHeight() || y3poly < 0){
-						//System.out.println("Player is off screen");
 			return true;
 		}
 		return false;

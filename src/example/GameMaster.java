@@ -25,10 +25,34 @@ public class GameMaster {
 		input = gc.getInput(); // listens for keyboard input
 		
 		if(input.isKeyPressed(Input.KEY_ENTER)){ //if left arrow key is pressed
+				System.out.println("ENTER");
 				return true;
 		}
 		return false;
 	}
+	
+	public static boolean rClick(GameContainer gc){
+		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		
+		if(input.isKeyPressed(Input.KEY_R)){ //if left arrow key is pressed
+				return true;
+		}
+		return false;
+	}
+	
+	public static boolean wClick(GameContainer gc){
+		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		
+		if(input.isKeyPressed(Input.KEY_W)){ //if left arrow key is pressed
+				return true;
+		}
+		return false;
+	}
+	
 	
 	public static void GUIRenderZero(Graphics g, int screenWidth,int screenHeight) {
 		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/3));
@@ -55,6 +79,40 @@ public class GameMaster {
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		g.drawString("Congrats",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Your score is: ",(float) (screenWidth/3.1) , (float) (screenHeight/2));
+	}
+	
+	public static void GameOver(){
+		Player.fuel = 5000;
+		timer = 0;
+		Player.x1poly = 300;
+		Player.y1poly = 0;
+		Player.x2poly = 290;
+		Player.y2poly = 30;
+		Player.x3poly = 310;
+		Player.y3poly = 30;
+		Player.yCond = 0;
+		Player.gravity = 0.2f;
+		Player.xSpeed = 0;
+		Player.ySpeed = 0;
+		Map.mapGeneration();
+		
+	}
+	public static void printGameOver(){
+		System.out.println(Player.fuel);
+		System.out.println(timer);
+		System.out.println(Player.x1poly);
+		System.out.println(Player.y1poly);
+		System.out.println(Player.x2poly);
+		System.out.println(Player.y2poly);
+		System.out.println(Player.x3poly);
+		System.out.println(Player.y3poly);
+		System.out.println(Player.yCond);
+		System.out.println(Player.gravity);
+		System.out.println(Player.xSpeed);
+		System.out.println(Player.ySpeed);
+		System.out.println("Map point " + Map.pointArr[3]);
+		
+		
 	}
 
 	
