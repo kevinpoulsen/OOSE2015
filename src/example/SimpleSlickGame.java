@@ -18,9 +18,6 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
-	
-	// Declaring GameMaster class.
-	public GameMaster gm;	
 	// Declaring screen width and height.
 	static int screenWidth = 640;
 	static int screenHeight = 600;
@@ -28,9 +25,6 @@ public class SimpleSlickGame extends BasicGame
 	int gameState;
 	
 	int score;
-	long timer;
-	int fuel;
-	public Map mapOne = new Map();
 
 	float rotateState;
 	
@@ -39,8 +33,10 @@ public class SimpleSlickGame extends BasicGame
 	boolean offScreenBool;
 	boolean continueBool;
 
+	// Stores 
 	float[] mapArr;
 	
+	// Stores angleState and rotateState from Class Player (currStates[0] = angleState and currStates[1] = rotateState)
 	float[] currStates = new float[2];
 	
 	private Music music; // variable to hold music sound files
@@ -53,7 +49,6 @@ public class SimpleSlickGame extends BasicGame
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
 		music = new Music("sounds/music.ogg");
-		gm = new GameMaster();
 		gameState = 0;
 		score = 10;
 
@@ -69,11 +64,11 @@ public class SimpleSlickGame extends BasicGame
 		// following if statements update the desired functions based in which state the game is in.
 		if(gameState == 0){
 			continueBool = GameMaster.enterClick(gc);
+			music.play();
 		}
 		
 		if(gameState == 1){
-			timer = gm.timer();
-			fuel = Player.fuelLeft();
+			GameMaster.timer();
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
 			Player.playerThrust(gc, currStates[0]);
@@ -120,8 +115,8 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 1){
-			GameMaster.GUIRenderOne(g, timer, fuel, screenWidth, screenHeight);
-			mapOne.mapRenderer(g, mapArr);
+			GameMaster.GUIRenderOne(g,screenWidth, screenHeight);
+			Map.mapRenderer(g,mapArr);
 			Player.playerRenderer(g,currStates[1], gc);
 		}
 

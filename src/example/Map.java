@@ -55,7 +55,7 @@ public class Map{
 		return pointArr;
 	}// float[] mapGeneration.
 	
-	public void mapRenderer(Graphics g, float[] arr){
+	public static void mapRenderer(Graphics g, float[] arr){
 		// Draw line between points.
 		mapShape =  new Polygon(pointArr);
 		g.draw(mapShape);
