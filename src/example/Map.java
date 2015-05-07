@@ -59,9 +59,6 @@ public class Map{
 	public void mapRenderer(Graphics g, float[] arr){
 		// Draw line between points.
 		mapShape =  new Polygon(pointArr);
-		
-		g.setColor(new Color(0,255,255));
-		g.fill(mapShape);
 		g.draw(mapShape);
 		
 //		g.drawLine(88,499,120,499); // marking landing pads
