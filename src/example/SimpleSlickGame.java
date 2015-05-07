@@ -9,6 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 
 public class SimpleSlickGame extends BasicGame
@@ -18,6 +19,11 @@ public class SimpleSlickGame extends BasicGame
 		super(gamename);
 	}
 	
+
+	private Music music; // variable to hold music sound files
+	private Sound blast; // variable to hold sound 
+	public Sound soundThrust;
+
 	// Declaring screen width and height.
 	static int screenWidth = 640;
 	static int screenHeight = 600;
@@ -32,8 +38,11 @@ public class SimpleSlickGame extends BasicGame
 	boolean collisionBool;
 	boolean offScreenBool;
 	boolean continueBool;
+	boolean play = true; //boolean to ensure that the "blast" sound is only played once upon death
+
 	boolean winBool;
 	boolean resetBool;
+
 	
 	// Declaring booleans for win conditions
 	boolean padOneBool;
@@ -45,9 +54,7 @@ public class SimpleSlickGame extends BasicGame
 	
 	// Stores angleState and rotateState from Class Player (currStates[0] = angleState and currStates[1] = rotateState)
 	float[] currStates = new float[2];
-	
-	private Music music; // variable to hold music sound files
-	
+
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		// The init() method is only called once
@@ -55,6 +62,9 @@ public class SimpleSlickGame extends BasicGame
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
 		music = new Music("sounds/music.ogg");
+		soundThrust = new Sound("sounds/thrust.ogg");
+		blast = new Sound("sounds/blastLow.ogg");
+
 		gameState = 0;
 		score = 10;
 
@@ -72,7 +82,7 @@ public class SimpleSlickGame extends BasicGame
 			resetBool = false;
 			GameMaster.printGameOver();
 			continueBool = GameMaster.enterClick(gc);
-			music.play();
+			music.play(); // starts the background music
 		}
 		
 		if(gameState == 1){
@@ -94,9 +104,12 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 2){
+			if(play){ //if statement to ensure that the "blast" sound is only played once when the player crashes
+			blast.play();
+			play = false;	// sets the boolean play to false so that "blast" will not be played again
+			}
 			collisionBool = false;
 			resetBool = GameMaster.rClick(gc);
-			music.stop();
 		}
 		
 		if(gameState == 3){
@@ -104,6 +117,7 @@ public class SimpleSlickGame extends BasicGame
 			padTwoBool = false;
 			padThreeBool = false;
 			winBool = GameMaster.wClick(gc);
+
 		}
 		
 		if(continueBool == true){
@@ -113,8 +127,8 @@ public class SimpleSlickGame extends BasicGame
 		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
 			
-			music.stop();
-			gameState = 2;
+			music.stop(); // stops the background music upon death
+			gameState = 2; // gameState 2 displays the "game over" screen
 		}
 		// loss condition. Sets game state to 2(game over) if player runs out of fuel.
 		if(Player.fuel <= 0){
