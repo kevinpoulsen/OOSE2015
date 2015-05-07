@@ -8,13 +8,10 @@ public class GameMaster {
 	long ellapsedTime;
 	long ellapsedSeconds;
 	String drawTimer;
-	int remainFuel;
 	
-	boolean collides = false;
+	boolean lostOnCollision = false;
 	
-	public static void onCollision(){
-		
-	}
+	
 	
 	
 	public long timer(){
@@ -23,10 +20,7 @@ public class GameMaster {
 		return ellapsedSeconds;
 	}
 	
-	public int fuel(int startFuel){
-		
-		return remainFuel;	
-	}
+	
 	
 	// The gamemaster class needs a timer and score system. 
 	// The score will be depending on remaining time and remaining fuel.
