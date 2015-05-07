@@ -17,8 +17,12 @@ public class SimpleSlickGame extends BasicGame
 		super(gamename);
 	}
 
-	public GameMaster test;	
+	static int ScreenWidth = 640;
+	static int ScreenHeight = 600;
+	
+	public GameMaster gm;	
 	long timer;
+	int fuel;
 	public Map mapOne = new Map();
 
 	float rotateState;
@@ -34,7 +38,7 @@ public class SimpleSlickGame extends BasicGame
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
-		test = new GameMaster();
+		gm = new GameMaster();
 	}
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
@@ -45,7 +49,7 @@ public class SimpleSlickGame extends BasicGame
 		// an example if you have 10 fps, i = 100
 
 		//timer in seconds is updated here
-	
+		fuel = Player.fuelLeft();
 		currStates = Player.playerStates(gc);
 		//System.out.println(rotateState);
 		Player.playerPosition();
@@ -56,7 +60,7 @@ public class SimpleSlickGame extends BasicGame
 
 		Player.playerOffScreen(gc); // warns user if player is off screen
 
-		timer = test.timer();
+		timer = gm.timer();
 		testBool = Player.onCollision(Map.mapShape);
 	}
 
@@ -64,21 +68,9 @@ public class SimpleSlickGame extends BasicGame
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		// The render function updates the displayed graphics.
-		Player.playerRenderer(g,currStates[1], gc);
 		//Timer in seconds is drawn here
-		
-		g.drawString("Angle: ", 530, 70);
-		g.drawString(String.valueOf(currStates[0]), 600, 70);
-		
-		g.drawString("Time: ", 530, 40);
-		g.drawString(String.valueOf(timer), 600, 40);
-		g.drawString("Collision: " + testBool, 50, 50);
-		
 		mapOne.mapRenderer(g, mapArr);
-		
-		
-		
-		
+		Player.playerRenderer(g,currStates[1], gc);
 	}
 
 	
@@ -88,7 +80,7 @@ public class SimpleSlickGame extends BasicGame
 		{
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick Game"));
-			appgc.setDisplayMode(640, 600, false);
+			appgc.setDisplayMode(ScreenWidth, ScreenHeight, false);
 			appgc.start();
 		}
 		catch (SlickException ex)
