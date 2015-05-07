@@ -38,7 +38,7 @@ public class SimpleSlickGame extends BasicGame
 	boolean collisionBool;
 	boolean offScreenBool;
 	boolean continueBool;
-	boolean play = true; //boolean to ensure that the "blast" sound is only played once upon death
+	public boolean play = true; //boolean to ensure that the "blast" sound is only played once upon death
 
 	boolean winBool;
 	boolean resetBool;
@@ -83,9 +83,11 @@ public class SimpleSlickGame extends BasicGame
 			GameMaster.printGameOver();
 			continueBool = GameMaster.enterClick(gc);
 			music.play(); // starts the background music
+			
 		}
 		
 		if(gameState == 1){
+			play = true; // sets play to true so the "blast" sound can be replayed
 			continueBool = false;
 			GameMaster.timer();
 			currStates = Player.playerStates(gc);
