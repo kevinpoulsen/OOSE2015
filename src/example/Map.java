@@ -62,6 +62,7 @@ public class Map{
 		
 		g.setColor(new Color(0,255,255));
 		g.fill(mapShape);
+		g.setColor(new Color(0,255,255));
 		g.draw(mapShape);
 		
 //		g.drawLine(88,499,120,499); // marking landing pads

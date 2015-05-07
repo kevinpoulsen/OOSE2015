@@ -63,7 +63,7 @@ public class SimpleSlickGame extends BasicGame
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		// The render function updates the displayed graphics.
-
+		Player.playerRenderer(g,currStates[1], gc);
 		//Timer in seconds is drawn here
 		g.drawString("Time: ", 530, 40);
 		g.drawString(String.valueOf(timer), 600, 40);
@@ -71,9 +71,8 @@ public class SimpleSlickGame extends BasicGame
 		
 		g.drawString("Angle: ", 530, 70);
 		g.drawString(String.valueOf(currStates[0]), 600, 70);
-		mapOne.mapRenderer(g, mapArr);
 		
-		Player.playerRenderer(g,currStates[1], gc);
+		mapOne.mapRenderer(g, mapArr);
 		
 	}
 

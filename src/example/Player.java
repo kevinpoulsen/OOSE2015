@@ -106,7 +106,7 @@ public class Player {
 		
 		g.setColor(new Color(255,255,0));
 		g.fill(shape);
-		g.setColor(new Color(255,255,255));
+		g.setColor(new Color(255,255,0));
 		g.draw(shape);
 		// Exhaust:
 		// when playerThrust is being called, draw some exhaust at the bottom of player
