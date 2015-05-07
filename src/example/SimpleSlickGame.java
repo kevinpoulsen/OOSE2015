@@ -24,7 +24,8 @@ public class SimpleSlickGame extends BasicGame
 	static int screenHeight = 600;
 	// Declaring game state which will handle which state the player is in. 
 	int gameState;
-		
+	
+	int score;
 	long timer;
 	int fuel;
 	public Map mapOne = new Map();
@@ -34,6 +35,7 @@ public class SimpleSlickGame extends BasicGame
 	//Declaring booleans for loss conditions
 	boolean collisionBool;
 	boolean offScreenBool;
+	boolean continueBool;
 
 	float[] mapArr;
 	
@@ -47,6 +49,7 @@ public class SimpleSlickGame extends BasicGame
 		mapArr = Map.mapGeneration();
 		gm = new GameMaster();
 		gameState = 0;
+		score = 10;
 	}
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
@@ -56,15 +59,21 @@ public class SimpleSlickGame extends BasicGame
 		// int i, i is delta, the integer is the number of miliseconds between each update.
 		// an example if you have 10 fps, i = 100
 
-		//timer in seconds is updated here
-		fuel = Player.fuelLeft();
-		currStates = Player.playerStates(gc);
-		//System.out.println(rotateState);
-		Player.playerPosition();
-		currStates = Player.playerStates(gc);
-		Player.playerThrust(gc, currStates[0]);
-		//timer in seconds is updated here
+		// following if statements update the desired functions based in which state the game is in.
+		if(gameState == 0){
+			continueBool = GameMaster.enterClick(gc);
+		}
 		
+		if(gameState == 1){
+			timer = gm.timer();
+			fuel = Player.fuelLeft();
+			currStates = Player.playerStates(gc);
+			Player.playerPosition();
+			Player.playerThrust(gc, currStates[0]);
+			Player.playerOffScreen(gc); // warns user if player is off screen
+			collisionBool = Player.onCollision(Map.mapShape);
+			offScreenBool = Player.playerOffScreen(gc);
+		}
 
 		Player.playerOffScreen(gc); // warns user if player is off screen
 
@@ -75,6 +84,14 @@ public class SimpleSlickGame extends BasicGame
 		collisionBool = Player.onCollision(Map.mapShape);
 		// is set to bool condition of playerOffScreen method in player class. Checks if any of the player coordinates is outside gamescreen.
 		offScreenBool = Player.playerOffScreen(gc);
+		
+		if(gameState == 2){
+	
+		}
+		
+		if(continueBool == true){
+			gameState = 1;
+		}
 		
 		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
@@ -88,40 +105,26 @@ public class SimpleSlickGame extends BasicGame
 		if(offScreenBool == true){
 			gameState = 2;
 		}
-		
-		if(gameState == 0){
-			
-		}
-		
-		if(gameState == 1){
-			
-		}
-
-		if(gameState == 2){
-	
-		}
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		// The render function updates the displayed graphics.
-		//Timer in seconds is drawn here
+		g.drawString("State " + gameState, 100, 100);
 		
 		if(gameState == 0){
-			
+			GameMaster.GUIRenderZero(g, screenWidth, screenHeight);
 		}
 		
 		if(gameState == 1){
-			
+			GameMaster.GUIRenderOne(g, timer, fuel, screenWidth, screenHeight);
+			mapOne.mapRenderer(g, mapArr);
+			Player.playerRenderer(g,currStates[1], gc);
 		}
 
 		if(gameState == 2){
-	
+			GameMaster.GUIRenderTwo(g, score, screenWidth, screenHeight);
 		}
-		g.drawString("State " + gameState, 100, 100);
-		mapOne.mapRenderer(g, mapArr);
-		Player.playerRenderer(g,currStates[1], gc);
 	}
 
 	

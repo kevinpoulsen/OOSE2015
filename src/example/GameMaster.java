@@ -2,6 +2,8 @@ package example;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 
 public class GameMaster {
 	
@@ -14,6 +16,17 @@ public class GameMaster {
 		ellapsedTime = System.currentTimeMillis() - startTime;
 		ellapsedSeconds = ellapsedTime/1000;
 		return ellapsedSeconds;
+	}
+	
+	public static boolean enterClick(GameContainer gc){
+		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		
+		if(input.isKeyPressed(Input.KEY_ENTER)){ //if left arrow key is pressed
+				return true;
+		}
+		return false;
 	}
 	
 	public static void GUIRenderZero(Graphics g, int screenWidth,int screenHeight) {
@@ -43,7 +56,5 @@ public class GameMaster {
 	// The GM therefore needs a timer object, fuel object, score object.
 	// The GM also needs xSpeed object and ySpeed object so it can be displayed in game
 	// GM needs lossCondition and winCondition. Counter for how far player is in game. 
-	
-
 	
 }
