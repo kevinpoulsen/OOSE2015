@@ -7,6 +7,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -66,7 +67,7 @@ public class SimpleSlickGame extends BasicGame
 		blast = new Sound("sounds/blastLow.ogg");
 
 		gameState = 0;
-		score = 10;
+		score = 0;
 
 	}
 	@Override
@@ -122,6 +123,7 @@ public class SimpleSlickGame extends BasicGame
 			padTwoBool = false;
 			padThreeBool = false;
 			winBool = GameMaster.wClick(gc);
+			score = GameMaster.scoreSystem(Player.fuel, GameMaster.timer);
 		}
 		
 		if(continueBool == true){
@@ -153,6 +155,13 @@ public class SimpleSlickGame extends BasicGame
 		}
 		// Same win condition, last landing pad.
 		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 5){
+			gameState = 3;
+		}
+		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		
+		if(input.isKeyPressed(Input.KEY_T)){
 			gameState = 3;
 		}
 		

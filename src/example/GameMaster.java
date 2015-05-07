@@ -19,12 +19,11 @@ public class GameMaster {
 		timer = ellapsedSeconds;
 	}
 	
-//	public static long scoreSystem(long fuel, long timer){
-//		long score;
-//		score = fuel/timer;
-//		
-//		return score;
-//	}
+	public static int scoreSystem(int fuel, long timer){
+		int score;
+		score = fuel/(int)(timer);
+		return score;
+	}
 	
 	public static boolean enterClick(GameContainer gc){
 		
@@ -90,7 +89,7 @@ public class GameMaster {
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		g.drawString("Congrats",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
-		g.drawString("Your score is: " + String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
 	}
 	
 	public static void gameOver(){
@@ -116,7 +115,6 @@ public class GameMaster {
 	public static void gameWon(){
 		Player.fuel = 5000;
 		//startTime = System.currentTimeMillis();
-		
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
