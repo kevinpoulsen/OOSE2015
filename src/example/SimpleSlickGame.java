@@ -7,6 +7,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -101,6 +102,7 @@ public class SimpleSlickGame extends BasicGame
 			padOneBool = Player.onCollision(Map.rectOne);
 			padTwoBool = Player.onCollision(Map.rectTwo);
 			padThreeBool = Player.onCollision(Map.rectThree);
+			continueBool = false;
 		}
 		
 		if(gameState == 2){
@@ -117,7 +119,6 @@ public class SimpleSlickGame extends BasicGame
 			padTwoBool = false;
 			padThreeBool = false;
 			winBool = GameMaster.wClick(gc);
-
 		}
 		
 		if(continueBool == true){
@@ -165,6 +166,8 @@ public class SimpleSlickGame extends BasicGame
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		g.drawString("State " + gameState, 100, 100);
+		g.drawString("bool" + continueBool, 400, 100);
+		g.drawString("colBool" + collisionBool, 400, 120);
 		
 		if(gameState == 0){
 			g.drawString("bool" + continueBool, 400, 100);
