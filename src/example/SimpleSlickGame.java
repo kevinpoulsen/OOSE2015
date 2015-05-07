@@ -18,12 +18,6 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
-	
-	private Music music; // variable to hold music sound files
-	private Sound sound; // variable to hold sound effect files
-
-	// Declaring GameMaster class.
-	public GameMaster gm;	
 	// Declaring screen width and height.
 	static int screenWidth = 640;
 	static int screenHeight = 600;
@@ -31,9 +25,6 @@ public class SimpleSlickGame extends BasicGame
 	int gameState;
 	
 	int score;
-	long timer;
-	int fuel;
-	public Map mapOne = new Map();
 
 	float rotateState;
 	
@@ -47,9 +38,14 @@ public class SimpleSlickGame extends BasicGame
 	boolean padTwoBool;
 	boolean padThreeBool;
 
+	// Stores 
 	float[] mapArr;
 	
+	// Stores angleState and rotateState from Class Player (currStates[0] = angleState and currStates[1] = rotateState)
 	float[] currStates = new float[2];
+	
+	private Music music; // variable to hold music sound files
+	private Sound sound; // variable to hold music sound files
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
@@ -57,9 +53,7 @@ public class SimpleSlickGame extends BasicGame
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
-		music = new Music("sounds/music.wav");
-		
-		gm = new GameMaster();
+		music = new Music("sounds/music.ogg");
 		gameState = 0;
 		score = 10;
 
@@ -79,8 +73,7 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 1){
-			timer = gm.timer();
-			fuel = Player.fuelLeft();
+			GameMaster.timer();
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
 			Player.playerThrust(gc, currStates[0]);
@@ -101,6 +94,7 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 3){
+
 			
 		}
 		
@@ -110,6 +104,9 @@ public class SimpleSlickGame extends BasicGame
 		
 		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
+			// explosion sound
+			sound = new Sound("sounds/blastLow.ogg");
+			sound.play();
 			gameState = 2;
 		}
 		// loss condition. Sets game state to 2(game over) if player runs out of fuel.
@@ -145,8 +142,8 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 1){
-			GameMaster.GUIRenderOne(g, timer, fuel, screenWidth, screenHeight);
-			mapOne.mapRenderer(g, mapArr);
+			GameMaster.GUIRenderOne(g,screenWidth, screenHeight);
+			Map.mapRenderer(g,mapArr);
 			Player.playerRenderer(g,currStates[1], gc);
 			
 		}

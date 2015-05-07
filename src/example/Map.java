@@ -2,7 +2,6 @@ package example;
 
 import java.util.Random;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Rectangle;
@@ -60,7 +59,7 @@ public class Map{
 		return pointArr;
 	}// float[] mapGeneration.
 	
-	public void mapRenderer(Graphics g, float[] arr){
+	public static void mapRenderer(Graphics g, float[] arr){
 		// Draw line between points.
 		mapShape =  new Polygon(pointArr);
 		g.draw(mapShape);
