@@ -52,9 +52,7 @@ public class SimpleSlickGame extends BasicGame
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
-
 		music = new Music("sounds/music.wav");
-		music.play();
 		
 		gm = new GameMaster();
 		gameState = 0;
@@ -72,6 +70,7 @@ public class SimpleSlickGame extends BasicGame
 		// following if statements update the desired functions based in which state the game is in.
 		if(gameState == 0){
 			continueBool = GameMaster.enterClick(gc);
+			music.play();
 		}
 		
 		if(gameState == 1){
@@ -81,19 +80,12 @@ public class SimpleSlickGame extends BasicGame
 			Player.playerPosition();
 			Player.playerThrust(gc, currStates[0]);
 			Player.playerOffScreen(gc); // warns user if player is off screen
+			// Initializing the loss condition booleans. 
+			// collisionBool is set to the bool condition of onCollision method from Player class which takes the shape of map and checks if it intersects with shape of player.
 			collisionBool = Player.onCollision(Map.mapShape);
+			// is set to bool condition of playerOffScreen method in player class. Checks if any of the player coordinates is outside gamescreen.
 			offScreenBool = Player.playerOffScreen(gc);
 		}
-
-		Player.playerOffScreen(gc); // warns user if player is off screen
-
-		timer = gm.timer();
-
-		// Initializing the loss condition booleans. 
-		// collisionBool is set to the bool condition of onCollision method from Player class which takes the shape of map and checks if it intersects with shape of player.
-		collisionBool = Player.onCollision(Map.mapShape);
-		// is set to bool condition of playerOffScreen method in player class. Checks if any of the player coordinates is outside gamescreen.
-		offScreenBool = Player.playerOffScreen(gc);
 		
 		if(gameState == 2){
 	
