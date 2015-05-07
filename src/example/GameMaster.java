@@ -9,11 +9,10 @@ import org.newdawn.slick.SlickException;
 
 public class GameMaster {
 	
-	//String drawTimer;
 	static long timer;
 	static long startTime = System.currentTimeMillis();
 	private static Image space; 
-	
+
 	
 	public static void timer(){	
 		long ellapsedTime;
@@ -23,11 +22,11 @@ public class GameMaster {
 		timer = ellapsedSeconds;
 	}
 	
-	public static int scoreSystem(int fuel, long timer){
-		int score;
-		score = fuel/(int)(timer);
-		return score;
-	}
+//	public static int scoreSystem(int fuel, long timer){
+//		int scores;
+//		scores = 10;
+//		return scores;
+//	}
 	
 	public static boolean enterClick(GameContainer gc){
 		
@@ -81,18 +80,17 @@ public class GameMaster {
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
 		g.setColor(new Color(255,255,255));
 		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
-		//g.drawString(String.valueOf(GameMaster.timer), (float)(ScreenWidth/1.1), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
-		//g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
 		g.drawString("Horizontal speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
 		g.drawString("Vertical speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
+		g.drawString("Score: " + SimpleSlickGame.score, (float)(ScreenWidth/1.2) , (float)(ScreenHeight/7.5));
 	}
 
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press R to restart",(float) (screenWidth/3) , (float) (screenHeight/2.5));
 
-		g.drawString("Your score is: " + String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
 
 	}
 	
@@ -103,9 +101,10 @@ public class GameMaster {
 	}
 	
 	public static void gameOver(){
-		Player.fuel = 5000;
+		Player.fuel = 1000;
 		//startTime = System.currentTimeMillis();
 		// SimpleSlickGame.score = 0;
+		SimpleSlickGame.score = 0;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
@@ -123,8 +122,9 @@ public class GameMaster {
 	}
 	
 	public static void gameWon(){
-		Player.fuel = 5000;
-		//startTime = System.currentTimeMillis();
+		Player.fuel = 1000;
+//		tempScore = SimpleSlickGame.score;
+//		SimpleSlickGame.score = SimpleSlickGame.score + tempScore;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
@@ -137,22 +137,6 @@ public class GameMaster {
 		Player.ySpeed = 0;
 		Map.mapGeneration();	
 	}
-	
-//	public static void printGameOver(){
-//		System.out.println(Player.fuel);
-//		System.out.println(timer);
-//		System.out.println(Player.x1poly);
-//		System.out.println(Player.y1poly);
-//		System.out.println(Player.x2poly);
-//		System.out.println(Player.y2poly);
-//		System.out.println(Player.x3poly);
-//		System.out.println(Player.y3poly);
-//		System.out.println(Player.yCond);
-//		System.out.println(Player.gravity);
-//		System.out.println(Player.xSpeed);
-//		System.out.println(Player.ySpeed);
-//		System.out.println("Map point " + Map.pointArr[3]);
-//	}
 
 	
 	// The gamemaster class needs a timer and score system. 
