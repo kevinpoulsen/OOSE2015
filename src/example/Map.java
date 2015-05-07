@@ -26,44 +26,44 @@ public class Map{
 		
 		// initializing the 30 coordinates that creates the map.
 		pointArr = new float[]{
-				1,599,//(x,y)  This point creates the possibilty of transforming the array to polygon
-				1,rnd.nextInt(400)+100,//1 Start point
-				20,rnd.nextInt(400)+100,// 2
-				40,rnd.nextInt(400)+100,// 3
-				60,rnd.nextInt(400)+100,// 4
-				80,rnd.nextInt(400)+100,// 5
-				100,rnd.nextInt(400)+100,// 6
-				120,rnd.nextInt(400)+100,// 7
-				140,rnd.nextInt(400)+100,// 8
-				160,rnd.nextInt(400)+100,// 9
-				180,rnd.nextInt(400)+100,// 10
-				200,rnd.nextInt(400)+100,// 11
-				220,rnd.nextInt(400)+100,// 12
-				240,rnd.nextInt(400)+100,// 13
-				260,rnd.nextInt(400)+100,// 14
-				280,rnd.nextInt(400)+100,// 15
-				300,rnd.nextInt(400)+100,// 16
-				320,rnd.nextInt(400)+100,// 17
-				340,rnd.nextInt(400)+100,// 18
-				360,rnd.nextInt(400)+100,// 19
-				380,rnd.nextInt(400)+100,// 20
-				400,rnd.nextInt(400)+100,// 21
-				420,rnd.nextInt(400)+100,// 22
-				440,rnd.nextInt(400)+100,// 23
-				460,rnd.nextInt(400)+100,// 24
-				480,rnd.nextInt(400)+100,// 25
-				500,rnd.nextInt(400)+100,// 26
-				520,rnd.nextInt(400)+100,// 27
-				540,rnd.nextInt(400)+100,// 28
-				560,rnd.nextInt(400)+100,// 29
-				580,rnd.nextInt(400)+100,// 30
-				599,rnd.nextInt(400)+100,// 31 end point
-				599,599,//This point creates the possibilty of transforming the array to polygon
+				1,599,						//(0,1)  This point creates the possibilty of transforming the array to polygon
+				1,rnd.nextInt(400)+100,		//(2,3) Start point
+				20,rnd.nextInt(400)+100,	//(4,5)
+				40,rnd.nextInt(400)+100,	//(6,7)
+				60,rnd.nextInt(400)+100,	//(8,9)
+				80,rnd.nextInt(400)+100,	//(10,11)
+				100,rnd.nextInt(400)+100,	//(12,13)
+				120,rnd.nextInt(400)+100,	//(14,15)
+				140,rnd.nextInt(400)+100,	//(16,17)
+				160,rnd.nextInt(400)+100,	//(18,19)
+				180,rnd.nextInt(400)+100,	//(20,21)
+				200,rnd.nextInt(400)+100,	//(22,23)
+				220,rnd.nextInt(400)+100,	//(24,25)
+				240,rnd.nextInt(400)+100,	//(26,27)
+				260,rnd.nextInt(400)+100,	//(28,29)
+				280,rnd.nextInt(400)+100,	//(30,31)
+				300,rnd.nextInt(400)+100,	//(32,33) 
+				320,rnd.nextInt(400)+100,	//(34,35)
+				340,rnd.nextInt(400)+100,	//(36,37)
+				360,rnd.nextInt(400)+100,	//(38,39)
+				380,rnd.nextInt(400)+100,	//(40,41)
+				400,rnd.nextInt(400)+100,	//(42,43)
+				420,rnd.nextInt(400)+100,	//(44,45)
+				440,rnd.nextInt(400)+100,	//(46,47)
+				460,rnd.nextInt(400)+100,	//(48,49)
+				480,rnd.nextInt(400)+100,	//(50,51)
+				500,rnd.nextInt(400)+100,	//(52,53)
+				520,rnd.nextInt(400)+100,	//(54,55)
+				540,rnd.nextInt(400)+100,	//(56,57)
+				560,rnd.nextInt(400)+100,	//(58,59)
+				580,rnd.nextInt(400)+100,	//(60,61)
+				599,rnd.nextInt(400)+100,	//(62,63) End point
+				599,599,					//(64,65) This point creates the possibilty of transforming the array to polygon
 		};
 		
-		padsOne = rnd.nextInt(60)+3;
-		padsTwo = rnd.nextInt(60)+3;
-		padsThree = rnd.nextInt(60)+3;
+		padsOne = rnd.nextInt(58)+3;
+		padsTwo = rnd.nextInt(58)+3;
+		padsThree = rnd.nextInt(58)+3;
 		
 		// if statements makes sure that integers are odd number. 
 		if(padsOne%2 == 0 ){
