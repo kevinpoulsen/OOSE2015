@@ -10,6 +10,7 @@ public class GameMaster {
 	//String drawTimer;
 	static long timer;
 	static long startTime = System.currentTimeMillis();
+	static int tempScore;
 	
 	public static void timer(){	
 		long ellapsedTime;
@@ -20,9 +21,9 @@ public class GameMaster {
 	}
 	
 	public static int scoreSystem(int fuel, long timer){
-		int score;
-		score = fuel/(int)(timer);
-		return score;
+		int scores;
+		scores = fuel/(int)(timer);
+		return scores;
 	}
 	
 	public static boolean enterClick(GameContainer gc){
@@ -76,13 +77,14 @@ public class GameMaster {
 		//g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
 		g.drawString("Horizontal speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
 		g.drawString("Vertical speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
+		g.drawString("Score: " + SimpleSlickGame.score, (float)(ScreenWidth/1.2) , (float)(ScreenHeight/7.5));
 	}
 
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press R to restart",(float) (screenWidth/3) , (float) (screenHeight/2.5));
 
-		g.drawString("Your score is: " + String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
 
 	}
 	
@@ -93,9 +95,10 @@ public class GameMaster {
 	}
 	
 	public static void gameOver(){
-		Player.fuel = 5000;
+		Player.fuel = 1000;
 		//startTime = System.currentTimeMillis();
 		// SimpleSlickGame.score = 0;
+		SimpleSlickGame.score = 0;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
@@ -113,8 +116,9 @@ public class GameMaster {
 	}
 	
 	public static void gameWon(){
-		Player.fuel = 5000;
-		//startTime = System.currentTimeMillis();
+		Player.fuel = 1000;
+		tempScore = SimpleSlickGame.score;
+		SimpleSlickGame.score = SimpleSlickGame.score + tempScore;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
