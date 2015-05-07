@@ -17,13 +17,14 @@ public class Player {
 	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
-	static int fuel = 5000;	   // fuel decreases as the players uses thrust
+	static int fuel = 1200;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.0f; // gravity pulls player in the +y direction
 
 	//public Sound soundThrust;
 	public static Sound soundThrust;
+	public static Sound warning;
+	static boolean play = true; // used to control warning sound
 	
-
 	static float yCond;
 	
 	static boolean thrust = false; // boolean to tell if thrust is being used, this is used to render the exhaust
@@ -42,19 +43,23 @@ public class Player {
 	static boolean collides = false;
 	static Shape shape;
 	static float[] polyCoordinates;
-
+	
 	public static void playerThrust(GameContainer gc, float angleState)
 	{
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
 		
-		// Initialize sound variable with "thrust" sound:
+		// Initialize sound variables:
 		try {
 			soundThrust = new Sound("sounds/thrust.ogg");
 		} catch (SlickException e) {
 			System.out.println("Cannot load sound file 'thrust.ogg'");
 		}
-		
+		try {
+			warning = new Sound("sounds/warning.ogg");
+		} catch (SlickException e) {
+			System.out.println("Cannot load sound file 'warning.ogg'");
+		}
 		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
@@ -93,6 +98,10 @@ public class Player {
 				xSpeed -= ds;
 			}
 		}// if (input.isKeyDown(Input.KEY_SPACE))
+		if(fuel < 1000 && warning.playing() != true && play == true){
+			warning.play();
+			play = false;
+		}
 	}// void playerThrust
 	
 	
@@ -101,7 +110,7 @@ public class Player {
 		
 		// this class needs modifications 
 		
-		gravity += 0.00001f;// there is a problem with the gravity implementation
+		gravity += 0.000015f;// there is a problem with the gravity implementation
 		
 		x1poly += xSpeed;
 		x2poly += xSpeed;
@@ -112,7 +121,7 @@ public class Player {
 		
 		yCond = (ySpeed + gravity) *100;
 		
-		System.out.println("TOOOOOPPPPP "+ yCond);
+		//System.out.println("TOOOOOPPPPP "+ yCond);
 
 	}
 	
@@ -132,7 +141,7 @@ public class Player {
 		if(input.isKeyPressed(Input.KEY_SPACE)){
 			// plays exhaust sound
 			soundThrust.play();
-			}
+		}
 		
 		// Exhaust:
 		if(thrust){
