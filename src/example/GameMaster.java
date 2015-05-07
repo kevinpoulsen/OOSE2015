@@ -118,7 +118,7 @@ public class GameMaster {
 		Player.ySpeed = 0;
 		Player.rotateState = 0;
 		Player.angleState = 0;
-		Map.mapGeneration(SimpleSlickGame.screenWidth);
+		Map.mapGeneration();
 		
 	}
 	
@@ -136,7 +136,7 @@ public class GameMaster {
 		Player.gravity = 0.0f;
 		Player.xSpeed = 0;
 		Player.ySpeed = 0;
-		Map.mapGeneration(SimpleSlickGame.screenWidth);	
+		Map.mapGeneration();	
 	}
 
 	

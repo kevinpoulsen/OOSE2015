@@ -20,7 +20,7 @@ public class Map{
 	static int padsTwo;
 	static int padsThree;
 	
-	public static float[] mapGeneration (int screenWidth){
+	public static float[] mapGeneration (){
 
 		Random rnd = new Random();
 		
