@@ -62,23 +62,23 @@ public class GameMaster {
 	
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
 		g.setColor(new Color(255,255,255));
-		g.drawString("Time: ",(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
-		g.drawString(String.valueOf(GameMaster.timer), (float)(ScreenWidth/1.1), (float)(ScreenHeight/30));
-		g.drawString("Fuel: ",(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
-		g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
+		g.drawString("Time: " + String.valueOf(GameMaster.timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
+		//g.drawString(String.valueOf(GameMaster.timer), (float)(ScreenWidth/1.1), (float)(ScreenHeight/30));
+		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
+		//g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
 		g.drawString(String.valueOf(Player.yCond), ScreenHeight/2, ScreenWidth/2);
 		
 	}
 
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
-		g.drawString("Your score is: ",(float) (screenWidth/3.1) , (float) (screenHeight/2));
-		g.drawString(String.valueOf(score),(float) (screenWidth/1.8) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		//g.drawString(String.valueOf(score),(float) (screenWidth/1.8) , (float) (screenHeight/2));
 	}
 	
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		g.drawString("Congrats",(float) (screenWidth/2.5) , (float) (screenHeight/3));
-		g.drawString("Your score is: ",(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
 	}
 	
 	public static void gameOver(){
@@ -97,6 +97,7 @@ public class GameMaster {
 		Player.rotateState = 0;
 		Player.angleState = 0;
 		Map.mapGeneration();
+		
 	}
 	
 	public static void gameWon(){
