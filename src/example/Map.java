@@ -65,6 +65,19 @@ public class Map{
 		padsTwo = rnd.nextInt(58)+3;
 		padsThree = rnd.nextInt(58)+3;
 		
+		// following if statements makes sure that pads are not placed in the same place. 
+		if(padsOne == padsTwo){
+			padsTwo += 1;
+		}
+		
+		if(padsOne == padsThree){
+			padsOne += 1;
+		}
+		
+		if(padsThree == padsTwo){
+			padsThree += 1;
+		}
+		
 		// if statements makes sure that integers are odd number. 
 		if(padsOne%2 == 0 ){
 			padsOne +=1;
