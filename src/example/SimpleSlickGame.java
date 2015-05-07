@@ -7,6 +7,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -25,6 +26,8 @@ public class SimpleSlickGame extends BasicGame
 	int gameState;
 	
 	int score;
+	
+	Input inp;
 
 	float rotateState;
 	
@@ -56,6 +59,7 @@ public class SimpleSlickGame extends BasicGame
 		music = new Music("sounds/music.ogg");
 		gameState = 0;
 		score = 10;
+		inp = gc.getInput();
 
 	}
 	@Override
@@ -87,14 +91,15 @@ public class SimpleSlickGame extends BasicGame
 			padOneBool = Player.onCollision(Map.rectOne);
 			padTwoBool = Player.onCollision(Map.rectTwo);
 			padThreeBool = Player.onCollision(Map.rectThree);
+			continueBool = false;
 		}
 		
 		if(gameState == 2){
-	
+			collisionBool = false;
+			
 		}
 		
 		if(gameState == 3){
-
 			
 		}
 		
@@ -136,6 +141,8 @@ public class SimpleSlickGame extends BasicGame
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		g.drawString("State " + gameState, 100, 100);
+		g.drawString("bool" + continueBool, 400, 100);
+		g.drawString("colBool" + collisionBool, 400, 120);
 		
 		if(gameState == 0){
 			GameMaster.GUIRenderZero(g, screenWidth, screenHeight);
@@ -143,7 +150,7 @@ public class SimpleSlickGame extends BasicGame
 		
 		if(gameState == 1){
 			GameMaster.GUIRenderOne(g,screenWidth, screenHeight);
-			Map.mapRenderer(g,mapArr);
+			Map.mapRenderer(g,mapArr);			
 			Player.playerRenderer(g,currStates[1], gc);
 			
 		}
