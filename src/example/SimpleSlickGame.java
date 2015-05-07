@@ -80,7 +80,7 @@ public class SimpleSlickGame extends BasicGame
 		// GameState Listener 
 		if(gameState == 0){
 			resetBool = false;
-			GameMaster.printGameOver();
+			//GameMaster.printGameOver();
 			continueBool = GameMaster.enterClick(gc);
 			music.play(); // starts the background music
 		}

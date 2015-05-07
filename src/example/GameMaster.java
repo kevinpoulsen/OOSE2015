@@ -94,6 +94,8 @@ public class GameMaster {
 		Player.gravity = 0.2f;
 		Player.xSpeed = 0;
 		Player.ySpeed = 0;
+		Player.rotateState = 0;
+		Player.angleState = 0;
 		Map.mapGeneration();
 		
 	}
