@@ -17,11 +17,12 @@ public class SimpleSlickGame extends BasicGame
 		super(gamename);
 	}
 	
+	// Declaring GameMaster class.
 	public GameMaster gm;	
-
+	// Declaring screen width and height.
 	static int screenWidth = 640;
 	static int screenHeight = 600;
-	
+	// Declaring game state which will handle which state the player is in. 
 	int gameState;
 		
 	long timer;
@@ -29,6 +30,8 @@ public class SimpleSlickGame extends BasicGame
 	public Map mapOne = new Map();
 
 	float rotateState;
+	
+	//Declaring booleans for loss conditions
 	boolean collisionBool;
 	boolean offScreenBool;
 
@@ -67,17 +70,21 @@ public class SimpleSlickGame extends BasicGame
 
 		timer = gm.timer();
 
+		// Initializing the loss condition booleans. 
+		// collisionBool is set to the bool condition of onCollision method from Player class which takes the shape of map and checks if it intersects with shape of player.
 		collisionBool = Player.onCollision(Map.mapShape);
+		// is set to bool condition of playerOffScreen method in player class. Checks if any of the player coordinates is outside gamescreen.
 		offScreenBool = Player.playerOffScreen(gc);
 		
+		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
 			gameState = 2;
 		}
-		
+		// loss condition. Sets game state to 2(game over) if player runs out of fuel.
 		if(Player.fuel <= 0){
 			gameState = 2;
 		}
-		
+		// loss condition. Sets game state to 2(game over) if player coordinates go off screen.
 		if(offScreenBool == true){
 			gameState = 2;
 		}
