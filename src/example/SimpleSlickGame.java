@@ -22,6 +22,7 @@ public class SimpleSlickGame extends BasicGame
 	static int screenWidth = 640;
 	static int screenHeight = 600;
 	
+	
 	// Declaring game state which will handle which state the player is in. 
 	int gameState;
 	int score;
