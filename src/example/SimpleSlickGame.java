@@ -52,7 +52,7 @@ public class SimpleSlickGame extends BasicGame
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
-		music = new Music("sounds/music.wav");
+		music = new Music("sounds/music.ogg");
 		
 		gm = new GameMaster();
 		gameState = 0;
@@ -88,7 +88,7 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 2){
-	
+			
 		}
 		
 		if(continueBool == true){
@@ -97,6 +97,9 @@ public class SimpleSlickGame extends BasicGame
 		
 		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
+			// explosion sound
+			sound = new Sound("sounds/blastLow.ogg");
+			sound.play();
 			gameState = 2;
 		}
 		// loss condition. Sets game state to 2(game over) if player runs out of fuel.
