@@ -13,8 +13,6 @@ public class Player {
 	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
-	static float xThrust;  // gain to speed from thrust.
-	static float yThrust;  // gain to speed from thrust.
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
 	static float yCond;
@@ -50,32 +48,32 @@ public class Player {
 			fuel--;
 			thrust = true;
 		 	if(angleState == 0){
-				yThrust -= ns; 
+				ySpeed -= ns; 
 			}
 			if(angleState == 1){
-				yThrust -= ds;
-				xThrust += ds;
+				ySpeed -= ds;
+				xSpeed += ds;
 			}
 			if(angleState == 2){
-				xThrust +=ns;
+				xSpeed +=ns;
 			}
 			if(angleState == 3){
-				yThrust += ds;
-				xThrust += ds;
+				ySpeed += ds;
+				xSpeed += ds;
 			}
 			if(angleState == 4){
-				yThrust += ns;
+				ySpeed += ns;
 			}
 			if(angleState == 5){
-				yThrust += ds;
-				xThrust -= ds;
+				ySpeed += ds;
+				xSpeed -= ds;
 			}
 			if(angleState == 6){
-				xThrust -= ns;
+				xSpeed -= ns;
 			}
 			if(angleState == 7){
-				yThrust -= ds;
-				xThrust -= ds;
+				ySpeed -= ds;
+				xSpeed -= ds;
 			}
 		}// if (input.isKeyDown(Input.KEY_SPACE))
 	}// void playerThrust
@@ -88,15 +86,12 @@ public class Player {
 		
 		gravity += 0.00001f;// there is a problem with the gravity implementation
 		
-		xSpeed = xThrust;
-		ySpeed = yThrust + gravity;
-		
 		x1poly += xSpeed;
 		x2poly += xSpeed;
 		x3poly += xSpeed;
-		y1poly += ySpeed;
-		y2poly += ySpeed;
-		y3poly += ySpeed;
+		y1poly += ySpeed + gravity;
+		y2poly += ySpeed + gravity;
+		y3poly += ySpeed + gravity;
 		
 		yCond = (ySpeed + gravity) *100;
 		
