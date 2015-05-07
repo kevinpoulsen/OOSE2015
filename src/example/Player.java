@@ -5,20 +5,30 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Polygon;
 
 public class Player {
 	//player variables
 	
+	
+	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
+
+	//public Sound soundThrust;
+	public static Sound soundThrust;
+	
+
 	static float yCond;
 	
 	static boolean thrust = false; // boolean to tell if thrust is being used, this is used to render the exhaust
-	
+
 	static float angleState = 0;
 	static float rotateState = 0;
 	
@@ -33,12 +43,19 @@ public class Player {
 	static boolean collides = false;
 	static Shape shape;
 	static float[] polyCoordinates;
-	
 
 	public static void playerThrust(GameContainer gc, float angleState)
 	{
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
+		
+		// Initialize sound variable with "thrust" sound:
+		try {
+			soundThrust = new Sound("sounds/thrust.ogg");
+		} catch (SlickException e) {
+			System.out.println("Cannot load sound file 'thrust.ogg'");
+		}
+		
 		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
@@ -47,6 +64,7 @@ public class Player {
 		{
 			fuel--;
 			thrust = true;
+
 		 	if(angleState == 0){
 				ySpeed -= ns; 
 			}
@@ -95,24 +113,30 @@ public class Player {
 		
 		yCond = (ySpeed + gravity) *100;
 		
-		//System.out.println(x1poly + " " + x2poly + " "+ x3poly);
-		//System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
+		System.out.println("TOOOOOPPPPP "+ yCond);
+
 	}
 	
 	public static void playerRenderer(Graphics g, float rotateState, GameContainer gc)
-	{
+	{	
 		polyCoordinates = new float[]{x1poly,y1poly,x2poly,y2poly,x3poly,y3poly};
-
-		float exhaustCoordinates[] = new float[6];
 		
 		shape = new Polygon(polyCoordinates);
 
+		float[] exhaustCoordinates = new float[6];
+		
 		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
 		g.draw(shape);
 		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		if(input.isKeyPressed(Input.KEY_SPACE)){
+			// plays exhaust sound
+			soundThrust.play();
+			}
+		
 		// Exhaust:
 		if(thrust){
-			
 			exhaustCoordinates = new float[]{x1poly,y1poly+40,x2poly,y2poly,x3poly,y3poly};
 			shape = new Polygon(exhaustCoordinates);
 			g.fill(shape);
@@ -121,7 +145,7 @@ public class Player {
 			thrust = false;
 		}
 	}	
-
+	
 	public static boolean onCollision(Shape a){
 		collides = shape.intersects(a);
 		return collides; 
@@ -133,7 +157,6 @@ public class Player {
 		if(x1poly > gc.getWidth() || x1poly < 0 || y1poly > gc.getHeight() || y1poly < 0 || 
 				x2poly > gc.getWidth() || x2poly < 0 || y2poly > gc.getHeight() || y2poly < 0|| 
 					x3poly > gc.getWidth() || x3poly < 0 || y3poly > gc.getHeight() || y3poly < 0){
-						//System.out.println("Player is off screen");
 			return true;
 		}
 		return false;
