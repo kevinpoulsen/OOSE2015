@@ -10,7 +10,7 @@ public class GameMaster {
 	//String drawTimer;
 	static long timer;
 	static long startTime = System.currentTimeMillis();
-	static int tempScore;
+	//static int tempScore;
 	
 	public static void timer(){	
 		long ellapsedTime;
@@ -20,11 +20,11 @@ public class GameMaster {
 		timer = ellapsedSeconds;
 	}
 	
-	public static int scoreSystem(int fuel, long timer){
-		int scores;
-		scores = fuel/(int)(timer);
-		return scores;
-	}
+//	public static int scoreSystem(int fuel, long timer){
+//		int scores;
+//		scores = 10;
+//		return scores;
+//	}
 	
 	public static boolean enterClick(GameContainer gc){
 		
@@ -117,8 +117,8 @@ public class GameMaster {
 	
 	public static void gameWon(){
 		Player.fuel = 1000;
-		tempScore = SimpleSlickGame.score;
-		SimpleSlickGame.score = SimpleSlickGame.score + tempScore;
+//		tempScore = SimpleSlickGame.score;
+//		SimpleSlickGame.score = SimpleSlickGame.score + tempScore;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
