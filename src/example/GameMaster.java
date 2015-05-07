@@ -47,7 +47,7 @@ public class GameMaster {
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Your score is: ",(float) (screenWidth/3.1) , (float) (screenHeight/2));
-		g.drawString(String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString(String.valueOf(score),(float) (screenWidth/1.8) , (float) (screenHeight/2));
 	}
 
 	

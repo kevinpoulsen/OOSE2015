@@ -7,9 +7,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 
 
 public class SimpleSlickGame extends BasicGame
@@ -19,9 +17,6 @@ public class SimpleSlickGame extends BasicGame
 		super(gamename);
 	}
 	
-	private Music music; // variable to hold music sound files
-	private Sound sound; // variable to hold sound effect files
-
 	// Declaring GameMaster class.
 	public GameMaster gm;	
 	// Declaring screen width and height.
@@ -46,14 +41,15 @@ public class SimpleSlickGame extends BasicGame
 	
 	float[] currStates = new float[2];
 	
+	//private Music music; // variable to hold music sound files
+	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		// The init() method is only called once
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
-		music = new Music("sounds/music.wav");
-		
+		//music = new Music("sound/music.wav");
 		gm = new GameMaster();
 		gameState = 0;
 		score = 10;
@@ -70,7 +66,6 @@ public class SimpleSlickGame extends BasicGame
 		// following if statements update the desired functions based in which state the game is in.
 		if(gameState == 0){
 			continueBool = GameMaster.enterClick(gc);
-			music.play();
 		}
 		
 		if(gameState == 1){
