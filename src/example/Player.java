@@ -110,9 +110,10 @@ public class Player {
 		y2poly += ySpeed + gravity;
 		y3poly += ySpeed + gravity;
 		
+		
 		yCond = (ySpeed + gravity) *100;
 		
-		System.out.println("TOOOOOPPPPP "+ yCond);
+		//System.out.println("TOOOOOPPPPP "+ yCond);
 
 	}
 	

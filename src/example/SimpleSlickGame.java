@@ -31,7 +31,7 @@ public class SimpleSlickGame extends BasicGame
 	
 	// Declaring game state which will handle which state the player is in. 
 	int gameState;
-	int score;
+	public static int score;
 	float rotateState;
 	
 	// Declaring booleans for loss conditions
@@ -88,8 +88,8 @@ public class SimpleSlickGame extends BasicGame
 		
 		if(gameState == 1){
 			play = true; // sets play to true so the "blast" sound can be replayed
-
 			GameMaster.timer();
+			
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
 			Player.playerThrust(gc, currStates[0]);
@@ -113,6 +113,7 @@ public class SimpleSlickGame extends BasicGame
 			play = false;	// sets the boolean play to false so that "blast" will not be played again
 			}
 			collisionBool = false;
+			offScreenBool = false;
 			resetBool = GameMaster.rClick(gc);
 		}
 		
@@ -202,6 +203,7 @@ public class SimpleSlickGame extends BasicGame
 			appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick Game"));
 
 			appgc.setDisplayMode(screenWidth, screenHeight, false);
+			appgc.setShowFPS(false);
 			appgc.start();
 		}
 		catch (SlickException ex)
