@@ -20,7 +20,10 @@ public class SimpleSlickGame extends BasicGame
 	}
 	
 	private Music music; // variable to hold music sound files
-	private Sound sound; // variable to hold sound effect files
+	private Sound blast; // variable to hold sound 
+	public Sound soundThrust;
+	
+	
 
 	// Declaring GameMaster class.
 	public GameMaster gm;	
@@ -41,6 +44,7 @@ public class SimpleSlickGame extends BasicGame
 	boolean collisionBool;
 	boolean offScreenBool;
 	boolean continueBool;
+	boolean play = true; //boolean to ensure that the "blast" sound is only played once upon death
 
 	float[] mapArr;
 	
@@ -53,6 +57,8 @@ public class SimpleSlickGame extends BasicGame
 		// In our case where we create all the objects (player,map and so on).
 		mapArr = Map.mapGeneration();
 		music = new Music("sounds/music.ogg");
+		soundThrust = new Sound("sounds/thrust.ogg");
+		blast = new Sound("sounds/blastLow.ogg");
 		
 		gm = new GameMaster();
 		gameState = 0;
@@ -70,7 +76,7 @@ public class SimpleSlickGame extends BasicGame
 		// following if statements update the desired functions based in which state the game is in.
 		if(gameState == 0){
 			continueBool = GameMaster.enterClick(gc);
-			music.play();
+			music.play(); // starts the background music
 		}
 		
 		if(gameState == 1){
@@ -88,7 +94,10 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 2){
-			
+			if(play){ //if statement to ensure that the "blast" sound is only played once when the player crashes
+			blast.play();
+			play = false;	// sets the boolean play to false so that "blast" will not be played again
+			}
 		}
 		
 		if(continueBool == true){
@@ -97,10 +106,10 @@ public class SimpleSlickGame extends BasicGame
 		
 		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
-			// explosion sound
-			sound = new Sound("sounds/blastLow.ogg");
-			sound.play();
-			gameState = 2;
+			
+			music.stop(); // stops the background music upon death
+			gameState = 2; // gameState 2 displays the "game over" screen
+			
 		}
 		// loss condition. Sets game state to 2(game over) if player runs out of fuel.
 		if(Player.fuel <= 0){

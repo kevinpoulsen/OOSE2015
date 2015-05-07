@@ -5,19 +5,27 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Polygon;
 
 public class Player {
 	//player variables
 	
+	
+	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
+	//public Sound soundThrust;
+	public static Sound soundThrust;
+	
 	
 	static boolean thrust = false; // boolean to tell if thrust is being used, this is used to render the exhaust
-	
+
 	static float angleState = 0;
 	static float rotateState = 0;
 	
@@ -39,6 +47,14 @@ public class Player {
 		float ds = 0.0005f; // diagonal speed
 		float ns = 0.001f; // normal speed
 		
+		// Initialize sound variable with "thrust" sound:
+		try {
+			soundThrust = new Sound("sounds/thrust.ogg");
+		} catch (SlickException e) {
+			System.out.println("Cannot load sound file 'thrust.ogg'");
+		}
+		
+		
 		Input input; 
 		input = gc.getInput(); // listens for keyboard input
 		
@@ -46,6 +62,7 @@ public class Player {
 		{
 			fuel--;
 			thrust = true;
+
 		 	if(angleState == 0){
 				ySpeed -= ns; 
 			}
@@ -112,9 +129,17 @@ public class Player {
 		g.rotate((x1poly+x2poly)/2, (y1poly+ y2poly)/2, rotateState);
 		g.draw(shape);
 		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		if(input.isKeyPressed(Input.KEY_SPACE)){
+			// plays exhaust sound
+			soundThrust.play();
+			}
+		
 		// Exhaust:
 		if(thrust){
 			
+			// draws exhaust
 			exhaustCoordinates = new float[]{x1poly,y1poly+40,x2poly,y2poly,x3poly,y3poly};
 			shape = new Polygon(exhaustCoordinates);
 			g.fill(shape);
@@ -123,7 +148,7 @@ public class Player {
 			thrust = false;
 		}
 	}	
-
+	
 	public static boolean onCollision(Shape a){
 		collides = shape.intersects(a);
 		return collides; 
