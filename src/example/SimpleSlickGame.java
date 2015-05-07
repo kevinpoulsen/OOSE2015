@@ -9,7 +9,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 
 
 public class SimpleSlickGame extends BasicGame
@@ -18,20 +17,22 @@ public class SimpleSlickGame extends BasicGame
 	{
 		super(gamename);
 	}
+	
 	// Declaring screen width and height.
 	static int screenWidth = 640;
 	static int screenHeight = 600;
+	
 	// Declaring game state which will handle which state the player is in. 
 	int gameState;
-	
 	int score;
-
 	float rotateState;
 	
 	// Declaring booleans for loss conditions
 	boolean collisionBool;
 	boolean offScreenBool;
 	boolean continueBool;
+	boolean winBool;
+	boolean resetBool;
 	
 	// Declaring booleans for win conditions
 	boolean padOneBool;
@@ -45,7 +46,6 @@ public class SimpleSlickGame extends BasicGame
 	float[] currStates = new float[2];
 	
 	private Music music; // variable to hold music sound files
-	private Sound sound; // variable to hold music sound files
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
@@ -65,14 +65,17 @@ public class SimpleSlickGame extends BasicGame
 		
 		// int i, i is delta, the integer is the number of miliseconds between each update.
 		// an example if you have 10 fps, i = 100
-
-		// following if statements update the desired functions based in which state the game is in.
+		
+		// GameState Listener 
 		if(gameState == 0){
+			resetBool = false;
+			GameMaster.printGameOver();
 			continueBool = GameMaster.enterClick(gc);
 			music.play();
 		}
 		
 		if(gameState == 1){
+			continueBool = false;
 			GameMaster.timer();
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
@@ -90,12 +93,16 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 2){
-	
+			collisionBool = false;
+			resetBool = GameMaster.rClick(gc);
+			music.stop();
 		}
 		
 		if(gameState == 3){
-
-			
+			padOneBool = false;
+			padTwoBool = false;
+			padThreeBool = false;
+			winBool = GameMaster.wClick(gc);
 		}
 		
 		if(continueBool == true){
@@ -104,9 +111,8 @@ public class SimpleSlickGame extends BasicGame
 		
 		// loss condition. Sets game state to 2(game over) if collision is detected.
 		if(collisionBool == true){
-			// explosion sound
-			sound = new Sound("sounds/blastLow.ogg");
-			sound.play();
+			
+			music.stop();
 			gameState = 2;
 		}
 		// loss condition. Sets game state to 2(game over) if player runs out of fuel.
@@ -130,6 +136,14 @@ public class SimpleSlickGame extends BasicGame
 		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 2){
 			gameState = 3;
 		}
+		if(winBool == true){
+			gameState = 1;
+		}
+		
+		if(resetBool == true){
+			GameMaster.GameOver();
+			gameState = 0;
+		}
 	}
 
 	@Override
@@ -138,17 +152,23 @@ public class SimpleSlickGame extends BasicGame
 		g.drawString("State " + gameState, 100, 100);
 		
 		if(gameState == 0){
+			g.drawString("bool" + continueBool, 400, 100);
+			g.drawString("colBool" + collisionBool, 400, 120);
 			GameMaster.GUIRenderZero(g, screenWidth, screenHeight);
 		}
 		
 		if(gameState == 1){
 			GameMaster.GUIRenderOne(g,screenWidth, screenHeight);
 			Map.mapRenderer(g,mapArr);
+			g.drawString("bool" + continueBool, 400, 100);
+			g.drawString("colBool" + collisionBool, 400, 120);
 			Player.playerRenderer(g,currStates[1], gc);
 			
 		}
 
 		if(gameState == 2){
+			g.drawString("bool" + continueBool, 400, 100);
+			g.drawString("colBool" + collisionBool, 400, 120);
 			GameMaster.GUIRenderTwo(g, score, screenWidth, screenHeight);
 		}
 		
