@@ -19,7 +19,7 @@ public class Player {
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
-	static float gravity = 0.2f; // gravity pulls player in the +y direction
+	static float gravity = 0.0f; // gravity pulls player in the +y direction
 
 	//public Sound soundThrust;
 	public static Sound soundThrust;
