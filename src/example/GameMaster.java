@@ -41,6 +41,7 @@ public class GameMaster {
 		g.drawString(String.valueOf(timer), ScreenWidth/2, ScreenHeight/2);
 		g.drawString("Fuel: ",ScreenWidth/2 , ScreenHeight/2);
 		g.drawString(String.valueOf(fuel), ScreenWidth/2 , ScreenHeight/2);
+		g.drawString(String.valueOf(Player.yCond), ScreenHeight/2, ScreenWidth/2);
 		
 	}
 
@@ -48,6 +49,11 @@ public class GameMaster {
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Your score is: ",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		g.drawString(String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+	}
+	
+	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
+		g.drawString("Congrats",(float) (screenWidth/2.5) , (float) (screenHeight/3));
+		g.drawString("Your score is: ",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 	}
 
 	

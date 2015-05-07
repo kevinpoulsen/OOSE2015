@@ -15,6 +15,7 @@ public class Player {
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 5000;	   // fuel decreases as the players uses thrust
 	static float gravity = 0.2f; // gravity pulls player in the +y direction
+	static float yCond;
 	
 	static boolean thrust = false; // boolean to tell if thrust is being used, this is used to render the exhaust
 	
@@ -96,6 +97,8 @@ public class Player {
 		y1poly += ySpeed + gravity;
 		y2poly += ySpeed + gravity;
 		y3poly += ySpeed + gravity;
+		
+		yCond = (ySpeed + gravity) *100;
 		
 		//System.out.println(x1poly + " " + x2poly + " "+ x3poly);
 		//System.out.println(y1poly + " "+ y2poly + " "+ y3poly);
