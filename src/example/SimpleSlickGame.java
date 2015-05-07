@@ -26,7 +26,7 @@ public class SimpleSlickGame extends BasicGame
 	public Sound soundThrust;
 
 	// Declaring screen width and height.
-	static int screenWidth = 640;
+	static int screenWidth = 600;
 	static int screenHeight = 600;
 	
 	
@@ -43,7 +43,6 @@ public class SimpleSlickGame extends BasicGame
 
 	boolean winBool;
 	boolean resetBool;
-
 	
 	// Declaring booleans for win conditions
 	boolean padOneBool;
@@ -61,7 +60,7 @@ public class SimpleSlickGame extends BasicGame
 		// The init() method is only called once
 		// this is were we place all the stuff needed for the game
 		// In our case where we create all the objects (player,map and so on).
-		mapArr = Map.mapGeneration();
+		mapArr = Map.mapGeneration(screenWidth);
 		music = new Music("sounds/music.ogg");
 		soundThrust = new Sound("sounds/thrust.ogg");
 		blast = new Sound("sounds/blastLow.ogg");
@@ -146,19 +145,19 @@ public class SimpleSlickGame extends BasicGame
 		}
 		// Win condition. Checks if player have collided with the landing pads in the correct angle state, 
 		//and with the correct amount of speed along the y axis. Sets the game state to 3 if all requirements is met.
-		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 5){
-			score+=10;
+		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 3){
+			score += Player.fuel/GameMaster.timer;
 			gameState = 3;
 			
 		}
 		// Same win condition, another landing pad.
-		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 5){
-			score+=10;
+		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 3){
+			score+= Player.fuel/GameMaster.timer;
 			gameState = 3;
 		}
 		// Same win condition, last landing pad.
-		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 5){
-			score+=10;
+		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 3){
+			score+= Player.fuel/GameMaster.timer;
 			gameState = 3;
 		}
 		

@@ -16,45 +16,69 @@ public class Map{
 	public static Rectangle rectOne;
 	public static Rectangle rectTwo;
 	public static Rectangle rectThree;
+	static int padsOne;
+	static int padsTwo;
+	static int padsThree;
 	
-	public static float[] mapGeneration (){
+	public static float[] mapGeneration (int screenWidth){
 
 		Random rnd = new Random();
 		
 		// initializing the 30 coordinates that creates the map.
 		pointArr = new float[]{
-				0,599,//(x,y) 1
-				0,rnd.nextInt(400)+100,// 2
-				44,rnd.nextInt(400)+100,// 3
-				66,rnd.nextInt(400)+100,// 4
-				88,500,// 5
-				120,500,// 6
-				132,rnd.nextInt(400)+100,// 7
-				154,rnd.nextInt(400)+100,// 8
-				166,rnd.nextInt(400)+100,// 9
-				198,rnd.nextInt(400)+100,// 10
-				210,rnd.nextInt(400)+100,// 11
-				242,400,// 12
-				284,400,// 13
-				290,rnd.nextInt(400)+100,// 14
-				306,rnd.nextInt(400)+100,// 15
-				328,rnd.nextInt(400)+100,// 16
-				350,rnd.nextInt(400)+100,// 17
-				372,rnd.nextInt(400)+100,// 18
-				394,rnd.nextInt(400)+100,// 19
-				416,rnd.nextInt(400)+100,// 20
-				438,rnd.nextInt(400)+100,// 21
-				460,rnd.nextInt(400)+100,// 22
-				482,rnd.nextInt(400)+100,// 23
-				504,rnd.nextInt(400)+100,// 24
-				526,rnd.nextInt(400)+100,// 25
-				548,rnd.nextInt(400)+100,// 26
-				570,300,// 27
-				592,300,// 28
-				639,rnd.nextInt(400)+100,// 29
-				639,599,// 30
+				1,599,//(x,y)  This point creates the possibilty of transforming the array to polygon
+				1,rnd.nextInt(400)+100,//1 Start point
+				20,rnd.nextInt(400)+100,// 2
+				40,rnd.nextInt(400)+100,// 3
+				60,rnd.nextInt(400)+100,// 4
+				80,rnd.nextInt(400)+100,// 5
+				100,rnd.nextInt(400)+100,// 6
+				120,rnd.nextInt(400)+100,// 7
+				140,rnd.nextInt(400)+100,// 8
+				160,rnd.nextInt(400)+100,// 9
+				180,rnd.nextInt(400)+100,// 10
+				200,rnd.nextInt(400)+100,// 11
+				220,rnd.nextInt(400)+100,// 12
+				240,rnd.nextInt(400)+100,// 13
+				260,rnd.nextInt(400)+100,// 14
+				280,rnd.nextInt(400)+100,// 15
+				300,rnd.nextInt(400)+100,// 16
+				320,rnd.nextInt(400)+100,// 17
+				340,rnd.nextInt(400)+100,// 18
+				360,rnd.nextInt(400)+100,// 19
+				380,rnd.nextInt(400)+100,// 20
+				400,rnd.nextInt(400)+100,// 21
+				420,rnd.nextInt(400)+100,// 22
+				440,rnd.nextInt(400)+100,// 23
+				460,rnd.nextInt(400)+100,// 24
+				480,rnd.nextInt(400)+100,// 25
+				500,rnd.nextInt(400)+100,// 26
+				520,rnd.nextInt(400)+100,// 27
+				540,rnd.nextInt(400)+100,// 28
+				560,rnd.nextInt(400)+100,// 29
+				580,rnd.nextInt(400)+100,// 30
+				599,rnd.nextInt(400)+100,// 31 end point
+				599,599,//This point creates the possibilty of transforming the array to polygon
 		};
 		
+		padsOne = rnd.nextInt(60)+3;
+		padsTwo = rnd.nextInt(60)+3;
+		padsThree = rnd.nextInt(60)+3;
+		
+		// if statements makes sure that integers are odd number. 
+		if(padsOne%2 == 0 ){
+			padsOne +=1;
+		}
+		if(padsTwo%2 == 0 ){
+			padsTwo +=1;
+		}
+		if(padsThree%2 == 0 ){
+			padsThree +=1;
+		}
+		
+		pointArr[padsOne+2] = pointArr[padsOne];
+		pointArr[padsTwo+2] = pointArr[padsTwo];
+		pointArr[padsThree+2] = pointArr[padsThree];
 		
 		return pointArr;
 	}// float[] mapGeneration.
@@ -66,13 +90,13 @@ public class Map{
 		
 		//Color padsColor = new Color(255,0,0);
 		//g.setColor(new Color(255,255,255));
-		rectOne = new Rectangle(88, 499, 32, 2);
+		rectOne = new Rectangle(pointArr[padsOne-1], pointArr[padsOne]-1, 19, 2);
 		//g.fill(rectOne);
 		g.draw(rectOne);
-		rectTwo = new Rectangle(242, 399, 42, 2);
+		rectTwo = new Rectangle(pointArr[padsTwo-1], pointArr[padsTwo]-1, 19, 2);
 		//g.fill(rectTwo);
 		g.draw(rectTwo);
-		rectThree = new Rectangle(570, 299, 22, 2);
+		rectThree = new Rectangle(pointArr[padsThree-1], pointArr[padsThree]-1, 19, 2);
 		//g.fill(rectThree);
 		g.draw(rectThree);
 		

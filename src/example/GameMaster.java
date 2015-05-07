@@ -75,8 +75,8 @@ public class GameMaster {
 		//g.drawString(String.valueOf(GameMaster.timer), (float)(ScreenWidth/1.1), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
 		//g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
-		g.drawString("Horizontal speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
-		g.drawString("Vertical speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
+		g.drawString("Vertical speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
+		g.drawString("Horizontal speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
 		g.drawString("Score: " + SimpleSlickGame.score, (float)(ScreenWidth/1.2) , (float)(ScreenHeight/7.5));
 	}
 
@@ -111,7 +111,7 @@ public class GameMaster {
 		Player.ySpeed = 0;
 		Player.rotateState = 0;
 		Player.angleState = 0;
-		Map.mapGeneration();
+		Map.mapGeneration(SimpleSlickGame.screenWidth);
 		
 	}
 	
@@ -129,7 +129,7 @@ public class GameMaster {
 		Player.gravity = 0.0f;
 		Player.xSpeed = 0;
 		Player.ySpeed = 0;
-		Map.mapGeneration();	
+		Map.mapGeneration(SimpleSlickGame.screenWidth);	
 	}
 	
 //	public static void printGameOver(){
