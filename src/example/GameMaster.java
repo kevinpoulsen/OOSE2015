@@ -3,13 +3,17 @@ package example;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 public class GameMaster {
 	
 	//String drawTimer;
 	static long timer;
 	static long startTime = System.currentTimeMillis();
+	private static Image space; 
+	
 	
 	public static void timer(){	
 		long ellapsedTime;
@@ -63,6 +67,12 @@ public class GameMaster {
 	
 	
 	public static void GUIRenderZero(Graphics g, int screenWidth,int screenHeight) {
+		try {
+			space = new Image("images/spaceDone.jpg");
+		} catch (SlickException e) {
+			System.out.println("could not load image 'spaceDone.jpg'");
+		}
+		space.draw(0,0);
 		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press Enter to continue",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		
