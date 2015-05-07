@@ -53,10 +53,11 @@ public class SimpleSlickGame extends BasicGame
 		Player.playerThrust(gc, currStates[0]);
 		//timer in seconds is updated here
 		
+
+		Player.playerOffScreen(gc); // warns user if player is off screen
+
 		timer = test.timer();
 		testBool = Player.onCollision(Map.mapShape);
-		
-		
 	}
 
 	@Override
@@ -65,14 +66,18 @@ public class SimpleSlickGame extends BasicGame
 		// The render function updates the displayed graphics.
 		Player.playerRenderer(g,currStates[1], gc);
 		//Timer in seconds is drawn here
-		g.drawString("Time: ", 530, 40);
-		g.drawString(String.valueOf(timer), 600, 40);
-		g.drawString("Collision: " + testBool, 50, 50);
 		
 		g.drawString("Angle: ", 530, 70);
 		g.drawString(String.valueOf(currStates[0]), 600, 70);
 		
+		g.drawString("Time: ", 530, 40);
+		g.drawString(String.valueOf(timer), 600, 40);
+		g.drawString("Collision: " + testBool, 50, 50);
+		
 		mapOne.mapRenderer(g, mapArr);
+		
+		
+		
 		
 	}
 
