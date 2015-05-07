@@ -7,16 +7,22 @@ import org.newdawn.slick.Input;
 
 public class GameMaster {
 	
-	static long startTime = System.currentTimeMillis();
+	//String drawTimer;
 	static long timer;
-	String drawTimer;
+	static long startTime = System.currentTimeMillis();
 	
-	public static void timer(){
+	public static void timer(){	
 		long ellapsedTime;
 		long ellapsedSeconds;
 		ellapsedTime = System.currentTimeMillis() - startTime;
 		ellapsedSeconds = ellapsedTime/1000;
 		timer = ellapsedSeconds;
+	}
+	
+	public static int scoreSystem(int fuel, long timer){
+		int score;
+		score = fuel/(int)(timer);
+		return score;
 	}
 	
 	public static boolean enterClick(GameContainer gc){
@@ -25,8 +31,9 @@ public class GameMaster {
 		input = gc.getInput(); // listens for keyboard input
 		
 		if(input.isKeyPressed(Input.KEY_ENTER)){ //if left arrow key is pressed
-				System.out.println("ENTER");
-				return true;
+			System.out.println("ENTER");
+			startTime = System.currentTimeMillis();
+			return true;
 		}
 		return false;
 	}
@@ -37,7 +44,7 @@ public class GameMaster {
 		input = gc.getInput(); // listens for keyboard input
 		
 		if(input.isKeyPressed(Input.KEY_R)){ //if left arrow key is pressed
-				return true;
+			return true;
 		}
 		return false;
 	}
@@ -48,7 +55,8 @@ public class GameMaster {
 		input = gc.getInput(); // listens for keyboard input
 		
 		if(input.isKeyPressed(Input.KEY_W)){ //if left arrow key is pressed
-				return true;
+			startTime = System.currentTimeMillis();
+			return true;
 		}
 		return false;
 	}
@@ -62,12 +70,12 @@ public class GameMaster {
 	
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
 		g.setColor(new Color(255,255,255));
-		g.drawString("Time: " + String.valueOf(GameMaster.timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
+		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
 		//g.drawString(String.valueOf(GameMaster.timer), (float)(ScreenWidth/1.1), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
 		//g.drawString(String.valueOf(Player.fuel),(float) (ScreenWidth/1.1) ,(float) (ScreenHeight/15));
-		g.drawString(String.valueOf(Player.yCond), ScreenHeight/2, ScreenWidth/2);
-		
+		g.drawString("Horizontal speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
+		g.drawString("Vertical speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
 	}
 
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
@@ -81,12 +89,13 @@ public class GameMaster {
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		g.drawString("Congrats",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
-		g.drawString("Your score is: " + String.valueOf(score),(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
 	}
 	
 	public static void gameOver(){
 		Player.fuel = 5000;
-		timer = 0;
+		//startTime = System.currentTimeMillis();
+		// SimpleSlickGame.score = 0;
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;
@@ -105,7 +114,7 @@ public class GameMaster {
 	
 	public static void gameWon(){
 		Player.fuel = 5000;
-		timer = 0;
+		//startTime = System.currentTimeMillis();
 		Player.x1poly = 300;
 		Player.y1poly = 0;
 		Player.x2poly = 290;

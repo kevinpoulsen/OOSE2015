@@ -7,6 +7,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -31,7 +32,7 @@ public class SimpleSlickGame extends BasicGame
 	
 	// Declaring game state which will handle which state the player is in. 
 	int gameState;
-	int score;
+	public static int score;
 	float rotateState;
 	
 	// Declaring booleans for loss conditions
@@ -66,7 +67,7 @@ public class SimpleSlickGame extends BasicGame
 		blast = new Sound("sounds/blastLow.ogg");
 
 		gameState = 0;
-		score = 10;
+		score = 0;
 
 	}
 	@Override
@@ -88,8 +89,8 @@ public class SimpleSlickGame extends BasicGame
 		
 		if(gameState == 1){
 			play = true; // sets play to true so the "blast" sound can be replayed
-
 			GameMaster.timer();
+			
 			currStates = Player.playerStates(gc);
 			Player.playerPosition();
 			Player.playerThrust(gc, currStates[0]);
@@ -113,6 +114,7 @@ public class SimpleSlickGame extends BasicGame
 			play = false;	// sets the boolean play to false so that "blast" will not be played again
 			}
 			collisionBool = false;
+			offScreenBool = false;
 			resetBool = GameMaster.rClick(gc);
 		}
 		
@@ -121,6 +123,7 @@ public class SimpleSlickGame extends BasicGame
 			padTwoBool = false;
 			padThreeBool = false;
 			winBool = GameMaster.wClick(gc);
+			score = GameMaster.scoreSystem(Player.fuel, GameMaster.timer);
 		}
 		
 		if(continueBool == true){
@@ -152,6 +155,13 @@ public class SimpleSlickGame extends BasicGame
 		}
 		// Same win condition, last landing pad.
 		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 5){
+			gameState = 3;
+		}
+		
+		Input input; 
+		input = gc.getInput(); // listens for keyboard input
+		
+		if(input.isKeyPressed(Input.KEY_T)){
 			gameState = 3;
 		}
 		
@@ -202,6 +212,7 @@ public class SimpleSlickGame extends BasicGame
 			appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick Game"));
 
 			appgc.setDisplayMode(screenWidth, screenHeight, false);
+			appgc.setShowFPS(false);
 			appgc.start();
 		}
 		catch (SlickException ex)
