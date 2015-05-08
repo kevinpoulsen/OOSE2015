@@ -1,6 +1,8 @@
 package example;
 
 
+import java.util.Timer;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

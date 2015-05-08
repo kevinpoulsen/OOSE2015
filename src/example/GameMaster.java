@@ -12,6 +12,9 @@ public class GameMaster {
 	static long timer;
 	static long startTime = System.currentTimeMillis();
 	private static Image space; 
+	private static Image sky;
+	private static Image victory;
+	private static Image crash;
 
 	
 	public static void timer(){	
@@ -74,11 +77,16 @@ public class GameMaster {
 		space.draw(0,0);
 		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press Enter to continue",(float) (screenWidth/3.1) , (float) (screenHeight/2));
-		
 	}
 	
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
 		g.setColor(new Color(255,255,255));
+		try {
+			sky = new Image("images/sky.jpg");
+		} catch (SlickException e) {
+			System.out.println("could not load image 'sky.jpg'");
+		}
+		sky.draw(0,0);
 		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
 		g.drawString("Horizontal speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
@@ -87,6 +95,12 @@ public class GameMaster {
 	}
 
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
+		try {
+			crash = new Image("Images/crash.jpg");
+		} catch (SlickException e) {
+			System.out.println("could not load image 'crash.jpg'");
+		}
+		crash.draw(0,0);
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press R to restart",(float) (screenWidth/3) , (float) (screenHeight/2.5));
 
@@ -95,9 +109,15 @@ public class GameMaster {
 	}
 	
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
-		g.drawString("Congrats",(float) (screenWidth/2.5) , (float) (screenHeight/3));
+		try {
+			victory = new Image("Images/victory1.jpg");
+		} catch (SlickException e) {
+			System.out.println("could not load image 'victory1.jpg'");
+		}
+		victory.draw(0,0);
+		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/6) , (float) (screenHeight/5));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
-		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Your score is: " + score,(float) (screenWidth/2.8) , (float) (screenHeight/4));
 	}
 	
 	public static void gameOver(){
