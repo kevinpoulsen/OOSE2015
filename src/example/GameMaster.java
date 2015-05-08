@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 public class GameMaster {
 	
@@ -13,6 +14,8 @@ public class GameMaster {
 	private static Image space; // space, Declares a Image variable used for storing a image. 
 	private static Image victory;
 	private static Image crash;
+	public static Sound win;
+	public static boolean playWin = true;
 
 	
 	/**
@@ -59,6 +62,7 @@ public class GameMaster {
 		
 		// if statement which returns boolean state, when the space key is pressed.
 		if(input.isKeyPressed(Input.KEY_R)){ //if R arrow key is pressed
+			playWin = true;
 			return true;
 		}
 		return false;
@@ -78,6 +82,7 @@ public class GameMaster {
 		// if statement which returns boolean state, when the space key is pressed.
 		if(input.isKeyPressed(Input.KEY_W)){ //if w arrow key is pressed
 			startTime = System.currentTimeMillis();
+			GameMaster.playWin = true;
 			return true;
 		}
 		return false;
@@ -117,7 +122,6 @@ public class GameMaster {
 	 * @param screenHeight, the height of the game screen, used in the method to display the graphics in relation to the height.
 	 */
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
-
 		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
 		g.drawString("Vertical speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
@@ -159,13 +163,17 @@ public class GameMaster {
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		// try: to load background image, catch(if failing): Draw string (Failed to load background image) 
 		try {
+			win = new Sound("Sounds/win.ogg");
+		} catch (SlickException e1) {
+			System.out.println("could not load sound 'win.ogg'");
+		}
+		try {
 			victory = new Image("Images/victory1.jpg");
 		} catch (SlickException e) {
 			g.drawString("Failed to load background image",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		}
 		// Draw background image.
 		victory.draw(screenWidth-screenWidth,screenHeight-screenHeight);
-		
 		// Draws GUI for game over screen based on screen width and height
 		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/7.5) , (float) (screenHeight/3.2));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.22));

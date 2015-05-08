@@ -160,7 +160,7 @@ public class Player {
 		float[] exhaustCoordinates = new float[6];
 		// using the x2poly and x3poly divided by two to determine the middle of xpoint and y1poly and y2poly divided by two to determine the middle y point to rotate the player around.
 		g.rotate((x2poly+x3poly)/2, (y1poly+ y2poly)/2, rotateState);
-		// Drawing the player polygon shape.
+		// Drag the player polygon shape.
 		g.draw(shape);
 		
 		// input, declaring and initializing from slick library to listen for keyboard input.
