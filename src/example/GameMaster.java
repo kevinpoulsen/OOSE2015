@@ -11,7 +11,6 @@ public class GameMaster {
 	static long timer; // timer, Declares a long variable used for storing timer, displayed in the GUI.
 	static long startTime = System.currentTimeMillis(); // startTime, Stores the long variable collected from the System.currentTimeMillis() method. 
 	private static Image space; // space, Declares a Image variable used for storing a image. 
-//	private static Image sky;
 	private static Image victory;
 	private static Image crash;
 
@@ -132,6 +131,7 @@ public class GameMaster {
 	 * @param screenHeight, the height of the game screen, used in the method to display the graphics in relation to the height.
 	 */
 	public static void GUIRenderTwo(Graphics g,int score, int screenWidth,int screenHeight) {
+		// try: to load background image, catch(if failing): Draw string (Failed to load background image) 
 		try {
 			crash = new Image("Images/crash.jpg");
 		} catch (SlickException e) {
@@ -155,6 +155,7 @@ public class GameMaster {
 	 * @param screenHeight, the height of the game screen, used in the method to display the graphics in relation to the height.
 	 */
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
+		// try: to load background image, catch(if failing): Draw string (Failed to load background image) 
 		try {
 			victory = new Image("Images/victory1.jpg");
 		} catch (SlickException e) {
