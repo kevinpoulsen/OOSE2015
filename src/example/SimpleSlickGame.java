@@ -61,8 +61,9 @@ public class SimpleSlickGame extends BasicGame
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		
-		// MANGLER COMMENT
-		mapArr = Map.mapGeneration();
+		mapArr = Map.mapGeneration(); // initializing mapArr with the method mapGeneration() creating the first map
+		
+		// initializing sound implementation
 		music = new Music("sounds/music.ogg");
 		soundThrust = new Sound("sounds/thrust.ogg");
 		blast = new Sound("sounds/blastLow.ogg");
