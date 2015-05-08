@@ -100,11 +100,7 @@ public class GameMaster {
 		space.draw(screenWidth-screenWidth,screenHeight-screenHeight);
 		
 		// Draws GUI based on screen width and height (Strings)
-		
-		// if statement draws insert coin string every time current time % 2 is 0 to make it blink.
-		if((int)(System.currentTimeMillis()/1000) % 2 == 0){
-		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/2.5));
-		} //if statement
+		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/3));
 		g.drawString("Press Enter to continue",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		g.drawString("Gameplay info:",(float) (screenWidth/15) , (float) (screenHeight/1.22));
 		g.drawString("The aircraft has to land with a vertical speed below 5.",(float) (screenWidth/15) , (float) (screenHeight/1.15));
@@ -146,7 +142,7 @@ public class GameMaster {
 		
 		// Draws GUI for game over screen based on screen width and height   ( strings,score)
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
-		g.drawString("Press R to restart",(float) (screenWidth/3.1) , (float) (screenHeight/2.5));
+		g.drawString("Press R to restart",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
 		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
 
 	} // void GUIRenderTwo()
@@ -171,8 +167,8 @@ public class GameMaster {
 		// Draws GUI for game over screen based on screen width and height
 		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/7.5) , (float) (screenHeight/5));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
-
-		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/4));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		
 	} // void GUIrenderThree()
 
 	
