@@ -61,8 +61,9 @@ public class SimpleSlickGame extends BasicGame
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		
-		// MANGLER COMMENT
-		mapArr = Map.mapGeneration();
+		mapArr = Map.mapGeneration(); // initializing mapArr with the method mapGeneration() creating the first map
+		
+		// initializing sound implementation
 		music = new Music("sounds/music.ogg");
 		soundThrust = new Sound("sounds/thrust.ogg");
 		blast = new Sound("sounds/blastLow.ogg");
@@ -144,18 +145,18 @@ public class SimpleSlickGame extends BasicGame
 		// Win condition. Checks if player have collided with the landing pads in the correct angle state, 
 		//and with the correct amount of speed along the y axis. Sets the game state to 3 if all requirements is met.
 
-		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 10){
+		if(padOneBool == true && Player.angleState == 0 && Player.yCond < 5){
 			score += Player.fuel/GameMaster.timer;
 			gameState = 3;
 			
 		}
 		
-		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 10){
+		if(padTwoBool == true && Player.angleState == 0 && Player.yCond < 5){
 			score+= Player.fuel/GameMaster.timer;
 			gameState = 3;
 		}
 
-		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 10){
+		if(padThreeBool == true && Player.angleState == 0 && Player.yCond < 5){
 			score+= Player.fuel/GameMaster.timer;
 			gameState = 3;
 		}		
