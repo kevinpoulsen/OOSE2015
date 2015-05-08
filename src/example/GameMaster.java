@@ -102,7 +102,7 @@ public class GameMaster {
 		
 		// Draws GUI based on screen width and height (Strings)
 		
-		// if statement draws insert coin string every time currenttime % 2 is 0 to make it blink.
+		// if statement draws insert coin string every time current time % 2 is 0 to make it blink.
 		if((int)(System.currentTimeMillis()/1000) % 2 == 0){
 		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/2.5));
 		} //if statement
