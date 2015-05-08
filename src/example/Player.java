@@ -11,10 +11,8 @@ import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Polygon;
 
 public class Player {
+	
 	//player variables
-	
-	
-	
 	static float xSpeed;  // players speed in the x direction
 	static float ySpeed;  // players speed in the y direction
 	static int fuel = 1000;	   // fuel decreases as the players uses thrust
