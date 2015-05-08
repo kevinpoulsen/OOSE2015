@@ -11,7 +11,7 @@ public class GameMaster {
 	static long timer; // timer, Declares a long variable used for storing timer, displayed in the GUI.
 	static long startTime = System.currentTimeMillis(); // startTime, Stores the long variable collected from the System.currentTimeMillis() method. 
 	private static Image space; // space, Declares a Image variable used for storing a image. 
-	private static Image sky;
+//	private static Image sky;
 	private static Image victory;
 	private static Image crash;
 
@@ -98,7 +98,7 @@ public class GameMaster {
 			g.drawString("Failed to load background image",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		}
 		// Draw background image. 
-		space.draw(0,0);
+		space.draw(screenWidth-screenWidth,screenHeight-screenHeight);
 		
 		// Draws GUI based on screen width and height (Strings)
 		
@@ -107,7 +107,10 @@ public class GameMaster {
 		g.drawString("Insert Coin",(float) (screenWidth/2.5) , (float) (screenHeight/2.5));
 		} //if statement
 		g.drawString("Press Enter to continue",(float) (screenWidth/3.1) , (float) (screenHeight/2));
-
+		g.drawString("Gameplay info:",(float) (screenWidth/15) , (float) (screenHeight/1.22));
+		g.drawString("The aircraft has to land with a vertical speed below 5.",(float) (screenWidth/15) , (float) (screenHeight/1.15));
+		g.drawString("Press Space to thrust, Press left or right arrow to rotate.",(float) (screenWidth/15) , (float) (screenHeight/1.1));
+		
 	} // void GUIRenderZero()
 	
 	/**
@@ -117,13 +120,6 @@ public class GameMaster {
 	 * @param screenHeight, the height of the game screen, used in the method to display the graphics in relation to the height.
 	 */
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
-
-		try {
-			sky = new Image("images/sky.jpg");
-		} catch (SlickException e) {
-			System.out.println("could not load image 'sky.jpg'");
-		}
-		sky.draw(0,0);
 
 		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
 		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
@@ -143,13 +139,14 @@ public class GameMaster {
 		try {
 			crash = new Image("Images/crash.jpg");
 		} catch (SlickException e) {
-			System.out.println("could not load image 'crash.jpg'");
+			g.drawString("Failed to load background image",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		}
-		crash.draw(0,0);
+		// Draw background image.
+		crash.draw(screenWidth-screenWidth,screenHeight-screenHeight);
 		
 		// Draws GUI for game over screen based on screen width and height   ( strings,score)
 		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
-		g.drawString("Press R to restart",(float) (screenWidth/3) , (float) (screenHeight/2.5));
+		g.drawString("Press R to restart",(float) (screenWidth/3.1) , (float) (screenHeight/2.5));
 		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
 
 	} // void GUIRenderTwo()
@@ -165,13 +162,16 @@ public class GameMaster {
 		try {
 			victory = new Image("Images/victory1.jpg");
 		} catch (SlickException e) {
-			System.out.println("could not load image 'victory1.jpg'");
+			g.drawString("Failed to load background image",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		}
-		victory.draw(0,0);
-		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/6) , (float) (screenHeight/5));
+		// Draw background image.
+		victory.draw(screenWidth-screenWidth,screenHeight-screenHeight);
+		
+		// Draws GUI for game over screen based on screen width and height
+		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/7.5) , (float) (screenHeight/5));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
 
-		g.drawString("Your score is: " + score,(float) (screenWidth/2.8) , (float) (screenHeight/4));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/4));
 	} // void GUIrenderThree()
 
 	
