@@ -97,7 +97,7 @@ public class GameMaster {
 	public static void GUIRenderZero(Graphics g, int screenWidth,int screenHeight) {
 		// try: to load background image, catch(if failing): Draw string (Failed to load background image) 
 		try {
-			space = new Image("images/spaceDone.jpg");
+			space = new Image("Images/spaceDone.jpg");
 		} catch (SlickException e) {
 			g.drawString("Failed to load background image",(float) (screenWidth/3.1) , (float) (screenHeight/2));
 		}
@@ -163,7 +163,7 @@ public class GameMaster {
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		// try: to load background image, catch(if failing): Draw string (Failed to load background image) 
 		try {
-			win = new Sound("Sounds/win.ogg");
+			win = new Sound("sounds/win.ogg");
 		} catch (SlickException e1) {
 			System.out.println("could not load sound 'win.ogg'");
 		}
