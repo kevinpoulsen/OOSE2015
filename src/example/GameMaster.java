@@ -143,9 +143,9 @@ public class GameMaster {
 		crash.draw(screenWidth-screenWidth,screenHeight-screenHeight);
 		
 		// Draws GUI for game over screen based on screen width and height   ( strings,score)
-		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3));
-		g.drawString("Press R to restart",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
-		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("Game over",(float) (screenWidth/2.5) , (float) (screenHeight/3.2));
+		g.drawString("Press R to restart",(float) (screenWidth/3.1) , (float) (screenHeight/1.22));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3) , (float) (screenHeight/1.15));
 
 	} // void GUIRenderTwo()
 	
@@ -167,9 +167,9 @@ public class GameMaster {
 		victory.draw(screenWidth-screenWidth,screenHeight-screenHeight);
 		
 		// Draws GUI for game over screen based on screen width and height
-		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/7.5) , (float) (screenHeight/5));
-		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.5));
-		g.drawString("Your score is: " + score,(float) (screenWidth/3.1) , (float) (screenHeight/2));
+		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/7.5) , (float) (screenHeight/3.2));
+		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.22));
+		g.drawString("Your score is: " + score,(float) (screenWidth/3) , (float) (screenHeight/1.15));
 		
 	} // void GUIrenderThree()
 
