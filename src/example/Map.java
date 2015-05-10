@@ -115,6 +115,10 @@ public class Map{
 		mapShape =  new Polygon(pointArr);
 		g.draw(mapShape);
 		
+		
+		 
+		
+		
 		// Draw and initialize rectangles for landing pads.    
 		rectOne = new Rectangle(pointArr[padsOne-1], pointArr[padsOne]-1, 19, 2);
 		g.draw(rectOne);

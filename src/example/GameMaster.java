@@ -1,11 +1,11 @@
 package example;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 
 public class GameMaster {
 	
@@ -14,8 +14,6 @@ public class GameMaster {
 	private static Image space; // space, Declares a Image variable used for storing a image. 
 	private static Image victory;
 	private static Image crash;
-	public static Sound win;
-	public static boolean playWin = true;
 
 	
 	/**
@@ -62,7 +60,6 @@ public class GameMaster {
 		
 		// if statement which returns boolean state, when the space key is pressed.
 		if(input.isKeyPressed(Input.KEY_R)){ //if R arrow key is pressed
-			playWin = true;
 			return true;
 		}
 		return false;
@@ -82,7 +79,6 @@ public class GameMaster {
 		// if statement which returns boolean state, when the space key is pressed.
 		if(input.isKeyPressed(Input.KEY_W)){ //if w arrow key is pressed
 			startTime = System.currentTimeMillis();
-			GameMaster.playWin = true;
 			return true;
 		}
 		return false;
@@ -114,7 +110,7 @@ public class GameMaster {
 		g.drawString("Press Space to thrust, Press left or right arrow to rotate.",(float) (screenWidth/15) , (float) (screenHeight/1.1));
 		
 	} // void GUIRenderZero()
-	
+
 	/**
 	 * void method for rendering GUI needed for gameState 1.
 	 * @param g, Graphics rendering library included in the Slick2D engine.
@@ -123,7 +119,16 @@ public class GameMaster {
 	 */
 	public static void GUIRenderOne(Graphics g, int ScreenWidth, int ScreenHeight){
 		g.drawString("Time: " + String.valueOf(timer),(float) (ScreenWidth/1.2), (float)(ScreenHeight/30));
-		g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
+		if((int)(System.currentTimeMillis()/100) % 3 == 0 && Player.fuel <= 200){
+			g.setColor(new Color(255,0,0));
+			g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
+			
+		} else{
+			g.setColor(new Color(255,255,255));
+			g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
+		}
+		//g.drawString("Fuel: " + String.valueOf(Player.fuel),(float)(ScreenWidth/1.2) , (float)(ScreenHeight/15));
+		g.setColor(new Color(255,255,255));
 		g.drawString("Vertical speed: " + String.valueOf(Player.yCond), (float)(ScreenWidth/60), (float)(ScreenHeight/30));
 		g.drawString("Horizontal speed: " + String.valueOf(Player.xSpeed), (float)(ScreenWidth/60), (float)(ScreenHeight/15));
 		g.drawString("Score: " + SimpleSlickGame.score, (float)(ScreenWidth/1.2) , (float)(ScreenHeight/7.5));
@@ -163,11 +168,6 @@ public class GameMaster {
 	public static void GUIrenderThree(Graphics g,int score, int screenWidth,int screenHeight){
 		// try: to load background image, catch(if failing): Draw string (Failed to load background image) 
 		try {
-			win = new Sound("sounds/win.ogg");
-		} catch (SlickException e1) {
-			System.out.println("could not load sound 'win.ogg'");
-		}
-		try {
 			victory = new Image("Images/victory1.jpg");
 		} catch (SlickException e) {
 			g.drawString("Failed to load background image",(float) (screenWidth/3.1) , (float) (screenHeight/2));
@@ -178,7 +178,6 @@ public class GameMaster {
 		g.drawString("One small step for man, one giant leap for mankind",(float) (screenWidth/7.5) , (float) (screenHeight/3.2));
 		g.drawString("Press W to continue",(float) (screenWidth/3.1) , (float) (screenHeight/1.22));
 		g.drawString("Your score is: " + score,(float) (screenWidth/3) , (float) (screenHeight/1.15));
-		
 	} // void GUIrenderThree()
 
 	

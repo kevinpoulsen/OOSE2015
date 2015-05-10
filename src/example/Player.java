@@ -53,6 +53,7 @@ public class Player {
 	static boolean collides = false;
 	static Shape shape;
 	static float[] polyCoordinates;
+	static Shape dust;//ASDKASKDASKJDKÆSAKDÆLKASÆLDKÆASLKDÆLASKDÆLKASÆLDKÆASLKDÆLASKDÆLKASÆLDKÆSALDKÆLASKD
 	
 	/**
 	 * Void method for player thrust.
@@ -176,7 +177,7 @@ public class Player {
 		// if statement which uses the thrust boolean for drawing the exhaust. 
 		if(thrust){
 			//Initializing the exhaustCoordinates array with the points from the player with addition of 40 to y1poly.
-			exhaustCoordinates = new float[]{x1poly,y1poly+40,x2poly,y2poly,x3poly,y3poly};
+			exhaustCoordinates = new float[]{x1poly,y1poly+ gc.getHeight()/16,x2poly,y2poly,x3poly,y3poly};
 			// initializing shape by making a new polygon of the exhaustCoordinates.
 			shape = new Polygon(exhaustCoordinates);
 			// Filling, coloring and drawing the exhaust shape.

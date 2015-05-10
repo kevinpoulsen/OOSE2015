@@ -13,7 +13,6 @@ import org.newdawn.slick.Sound;
 
 public class SimpleSlickGame extends BasicGame
 {
-	
 	/**
 	 * The SimpleSlickGame class includes the methods init(), update(), render() and main().
 	 * @param gamename
@@ -27,7 +26,9 @@ public class SimpleSlickGame extends BasicGame
 	private Music music; // variable to hold music sound files
 	private Sound blast; // variable to hold sound 
 	public Sound soundThrust;
-	public boolean play = true; //boolean to ensure that the "blast" sound is only played once upon death
+	private Sound win;
+	public boolean play = true; // boolean to ensure that the "blast" sound is only played once upon death
+	public boolean playWin = true; // boolean to ensure that the "win" sound is only played once upon winning
 	
 	// Declaring screen width and height.
 	static int screenWidth = 600;
@@ -67,10 +68,10 @@ public class SimpleSlickGame extends BasicGame
 		music = new Music("sounds/music.ogg");
 		soundThrust = new Sound("sounds/thrust.ogg");
 		blast = new Sound("sounds/blastLow.ogg");
-
+		win = new Sound("sounds/win.ogg");
+		
 		gameState = 0;
 		score = 0;
-
 	} // void init()
 	
 	//The update method updates your game logic, frame for frame(update method is from the Slick2D game engine library)
@@ -81,11 +82,12 @@ public class SimpleSlickGame extends BasicGame
 		if(gameState == 0){
 			resetBool = false;
 			continueBool = GameMaster.enterClick(gc); // listens to player input 
-			music.loop(); // starts the background music
+			music.loop(1.0f, 0.55f); // starts the background music
 		}
 		
 		if(gameState == 1){
 			play = true; // sets play to true so the "blast" sound can be replayed
+			playWin = true; // sets playWin to true so the "win" sound can be replayed
 			GameMaster.timer(); // calling the time method from Class GameMaster to update the time.
 			
 			currStates = Player.playerStates(gc); // calling the playerStates method from Class Player to update the angle and rotation state of the player.
@@ -118,6 +120,10 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gameState == 3){
+			if(playWin){
+			win.play(1.0f,0.5f);
+			playWin = false;
+			}
 			padOneBool = false;
 			padTwoBool = false;
 			padThreeBool = false;
